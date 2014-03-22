@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>imageName</key>
+		<string>giraffe</string>
+		<key>title</key>
+		<string>giraffe</string>
+		<key>instructions</key>
+		<string>what is this animal, and what is the sound that it makes ?</string>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>sheep</string>
+		<key>title</key>
+		<string>sheep</string>
+		<key>instructions</key>
+		<string>what is this animal</string>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>cat</string>
+		<key>title</key>
+		<string>cat</string>
+		<key>instructions</key>
+		<string>what is this animal</string>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>chicken</string>
+		<key>title</key>
+		<string>chicken</string>
+		<key>instructions</key>
+		<string>what is this animal</string>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>penguin</string>
+		<key>title</key>
+		<string>penguin</string>
+		<key>instructions</key>
+		<string>what is this animal</string>
+	</dict>
+</array>
+</plist>

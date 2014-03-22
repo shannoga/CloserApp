@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>accelerationX</key>
+	<integer>20</integer>
+	<key>accelerationY</key>
+	<integer>20</integer>
+	<key>alphaRange</key>
+	<real>0.20000000000000001</real>
+	<key>alphaSpeed</key>
+	<integer>-1</integer>
+	<key>angleRange</key>
+	<integer>360</integer>
+	<key>birthRate</key>
+	<integer>4</integer>
+	<key>birthRateMax</key>
+	<integer>6</integer>
+	<key>blendMode</key>
+	<string>Add</string>
+	<key>coloeBlendSpeed</key>
+	<integer>0</integer>
+	<key>color</key>
+	<integer>0</integer>
+	<key>colorBlendFactor</key>
+	<integer>1</integer>
+	<key>colorBlendRange</key>
+	<integer>20</integer>
+	<key>imageFile</key>
+	<string>particleStar</string>
+	<key>lifetime</key>
+	<integer>5</integer>
+	<key>lifetimeRange</key>
+	<integer>7</integer>
+	<key>positionRangeX</key>
+	<integer>50</integer>
+	<key>positionRangeY</key>
+	<integer>50</integer>
+	<key>rotationRange</key>
+	<integer>20</integer>
+	<key>rotationSpeed</key>
+	<integer>0</integer>
+	<key>scale</key>
+	<real>0.5</real>
+	<key>scaleRange</key>
+	<real>0.90000000000000002</real>
+	<key>scaleSpeed</key>
+	<real>-0.40000000000000002</real>
+	<key>speed</key>
+	<integer>10</integer>
+	<key>speedRange</key>
+	<integer>20</integer>
+	<key>startAlpha</key>
+	<integer>1</integer>
+	<key>startAngle</key>
+	<integer>0</integer>
+	<key>startRotation</key>
+	<integer>10</integer>
+</dict>
+</plist>

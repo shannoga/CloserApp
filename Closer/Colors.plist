@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>imageName</key>
+		<string>red</string>
+		<key>title</key>
+		<string>red</string>
+		<key>instructions</key>
+		<string>what is this animal</string>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>blue</string>
+		<key>title</key>
+		<string>blue</string>
+		<key>instructions</key>
+		<string>what is this animal</string>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>black</string>
+		<key>title</key>
+		<string>black</string>
+		<key>instructions</key>
+		<string>what is this animal</string>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>orange</string>
+		<key>title</key>
+		<string>orange</string>
+		<key>instructions</key>
+		<string>what is this animal</string>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>purple</string>
+		<key>title</key>
+		<string>purple</string>
+		<key>instructions</key>
+		<string>what is this animal</string>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>green</string>
+		<key>title</key>
+		<string>green</string>
+		<key>instructions</key>
+		<string>what is this animal</string>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>white</string>
+		<key>title</key>
+		<string>white</string>
+		<key>instructions</key>
+		<string>what is this animal</string>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>yellow</string>
+		<key>title</key>
+		<string>yellow</string>
+		<key>instructions</key>
+		<string>what is this animal</string>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>brown</string>
+		<key>title</key>
+		<string>brown</string>
+		<key>instructions</key>
+		<string>what is this animal</string>
+	</dict>
+</array>
+</plist>

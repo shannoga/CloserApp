@@ -1,0 +1,19 @@
+PODS:
+  - Facebook-iOS-SDK (3.12.0)
+  - MBProgressHUD (0.8)
+  - UIActionSheet+Blocks (0.8)
+  - UIAlertView+Blocks (0.8)
+
+DEPENDENCIES:
+  - Facebook-iOS-SDK (~> 3.12.0)
+  - MBProgressHUD (~> 0.8)
+  - UIActionSheet+Blocks (~> 0.8)
+  - UIAlertView+Blocks (~> 0.8)
+
+SPEC CHECKSUMS:
+  Facebook-iOS-SDK: c09f7d80db5c48170ff834bc03ebe774c49d1f5b
+  MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
+  UIActionSheet+Blocks: d3c7515281a4c5c5b9fbf127d8a9220982d4392c
+  UIAlertView+Blocks: 39a1aee8ea75c4f9f877ff0b3734d84bf2009d1f
+
+COCOAPODS: 0.29.0
