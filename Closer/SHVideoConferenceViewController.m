@@ -28,7 +28,6 @@
 @property (nonatomic) BOOL inConference;
 
 - (IBAction)joinLeaveConference:(id)sender;
-- (IBAction)logout:(id)sender;
 
 @end
 
@@ -287,12 +286,7 @@
     
 }
 
-- (void)logout:(id)sender
-{
-    [PFUser logOut];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoggdOut" object:nil];
-    
-}
+
 
 #pragma mark dealloc
 

@@ -65,6 +65,7 @@
 		39A71EE818AC9B9400FB338B /* SHGamesDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 39A71EE718AC9B9400FB338B /* SHGamesDataSource.m */; };
 		39A71EEB18AC9C0900FB338B /* SHGamesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39A71EEA18AC9C0900FB338B /* SHGamesController.m */; };
 		39B58A1D18A66364001F3601 /* SHNotificationsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B58A1C18A66364001F3601 /* SHNotificationsController.m */; };
+		39BEC16B18E14F93001A96BE /* SHCollectionViewFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39BEC16A18E14F93001A96BE /* SHCollectionViewFriendCell.m */; };
 		39C522C018DE2D1500E6430B /* SHUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C522BF18DE2D1500E6430B /* SHUserProfileViewController.m */; };
 		39C54BFD18AA75CC006D56FE /* 138-Pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C54BFB18AA75CC006D56FE /* 138-Pause.png */; };
 		39C54BFE18AA75CC006D56FE /* 138-Pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C54BFC18AA75CC006D56FE /* 138-Pause@2x.png */; };
@@ -79,6 +80,9 @@
 		39C54C1218AAA729006D56FE /* SHGamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C54C1118AAA728006D56FE /* SHGamesViewController.m */; };
 		39C54C1518AAB28D006D56FE /* SHGameSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C54C1418AAB28D006D56FE /* SHGameSelectionViewController.m */; };
 		39C54C1818AAB580006D56FE /* SHGameDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C54C1718AAB580006D56FE /* SHGameDescriptionViewController.m */; };
+		39CEA46F18DEAE6000985E9A /* SHOoVooSDKController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CEA46E18DEAE6000985E9A /* SHOoVooSDKController.m */; };
+		39CEA47218DF80C500985E9A /* SHFindGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CEA47118DF80C500985E9A /* SHFindGroupsViewController.m */; };
+		39E414F618E0DAD1003DEC86 /* SHUserProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E414F518E0DAD1003DEC86 /* SHUserProfileController.m */; };
 		39E6542918AA5A7200AAFEB5 /* SHHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E6542818AA5A7200AAFEB5 /* SHHelpers.m */; };
 		39F218B518BFBE9A00938E2D /* SHGameContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F218B418BFBE9A00938E2D /* SHGameContext.m */; };
 		39F218BD18C1246E00938E2D /* GamesMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39F218BC18C1246E00938E2D /* GamesMenu.plist */; };
@@ -182,6 +186,8 @@
 		39A71EEA18AC9C0900FB338B /* SHGamesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHGamesController.m; sourceTree = "<group>"; };
 		39B58A1B18A66364001F3601 /* SHNotificationsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHNotificationsController.h; sourceTree = "<group>"; };
 		39B58A1C18A66364001F3601 /* SHNotificationsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHNotificationsController.m; sourceTree = "<group>"; };
+		39BEC16918E14F93001A96BE /* SHCollectionViewFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCollectionViewFriendCell.h; sourceTree = "<group>"; };
+		39BEC16A18E14F93001A96BE /* SHCollectionViewFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCollectionViewFriendCell.m; sourceTree = "<group>"; };
 		39C522BE18DE2D1500E6430B /* SHUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHUserProfileViewController.h; sourceTree = "<group>"; };
 		39C522BF18DE2D1500E6430B /* SHUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHUserProfileViewController.m; sourceTree = "<group>"; };
 		39C54BFB18AA75CC006D56FE /* 138-Pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "138-Pause.png"; sourceTree = "<group>"; };
@@ -201,6 +207,12 @@
 		39C54C1418AAB28D006D56FE /* SHGameSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHGameSelectionViewController.m; sourceTree = "<group>"; };
 		39C54C1618AAB580006D56FE /* SHGameDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHGameDescriptionViewController.h; sourceTree = "<group>"; };
 		39C54C1718AAB580006D56FE /* SHGameDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHGameDescriptionViewController.m; sourceTree = "<group>"; };
+		39CEA46D18DEAE6000985E9A /* SHOoVooSDKController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHOoVooSDKController.h; sourceTree = "<group>"; };
+		39CEA46E18DEAE6000985E9A /* SHOoVooSDKController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHOoVooSDKController.m; sourceTree = "<group>"; };
+		39CEA47018DF80C500985E9A /* SHFindGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHFindGroupsViewController.h; sourceTree = "<group>"; };
+		39CEA47118DF80C500985E9A /* SHFindGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHFindGroupsViewController.m; sourceTree = "<group>"; };
+		39E414F418E0DAD1003DEC86 /* SHUserProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHUserProfileController.h; sourceTree = "<group>"; };
+		39E414F518E0DAD1003DEC86 /* SHUserProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHUserProfileController.m; sourceTree = "<group>"; };
 		39E6542718AA5A7200AAFEB5 /* SHHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHHelpers.h; sourceTree = "<group>"; };
 		39E6542818AA5A7200AAFEB5 /* SHHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHHelpers.m; sourceTree = "<group>"; };
 		39F218B318BFBE9A00938E2D /* SHGameContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHGameContext.h; sourceTree = "<group>"; };
@@ -273,6 +285,8 @@
 				39A71EEA18AC9C0900FB338B /* SHGamesController.m */,
 				39A71EE618AC9B9400FB338B /* SHGamesDataSource.h */,
 				39A71EE718AC9B9400FB338B /* SHGamesDataSource.m */,
+				39CEA46D18DEAE6000985E9A /* SHOoVooSDKController.h */,
+				39CEA46E18DEAE6000985E9A /* SHOoVooSDKController.m */,
 			);
 			name = "Controllers and Coordinators";
 			sourceTree = "<group>";
@@ -280,6 +294,8 @@
 		392C02FA18C20C2A0064391F /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				396D74EE18A619E0000E2BB4 /* SHVideoConferenceViewController.h */,
+				396D74EF18A619E0000E2BB4 /* SHVideoConferenceViewController.m */,
 				392C02FB18C20C440064391F /* SHBaseViewController.h */,
 				392C02FC18C20C440064391F /* SHBaseViewController.m */,
 				39C54C0D18AAA70C006D56FE /* SHMainViewController.h */,
@@ -370,8 +386,6 @@
 				392C02F518C207CB0064391F /* Controllers and Coordinators */,
 				396D74E818A619E0000E2BB4 /* Main_iPhone.storyboard */,
 				396D74EB18A619E0000E2BB4 /* Main_iPad.storyboard */,
-				396D74EE18A619E0000E2BB4 /* SHVideoConferenceViewController.h */,
-				396D74EF18A619E0000E2BB4 /* SHVideoConferenceViewController.m */,
 				396D74F118A619E0000E2BB4 /* Images.xcassets */,
 				39B58A1B18A66364001F3601 /* SHNotificationsController.h */,
 				39B58A1C18A66364001F3601 /* SHNotificationsController.m */,
@@ -480,8 +494,14 @@
 		39C522C118DE2D1E00E6430B /* User Profile */ = {
 			isa = PBXGroup;
 			children = (
+				39E414F418E0DAD1003DEC86 /* SHUserProfileController.h */,
+				39E414F518E0DAD1003DEC86 /* SHUserProfileController.m */,
 				39C522BE18DE2D1500E6430B /* SHUserProfileViewController.h */,
 				39C522BF18DE2D1500E6430B /* SHUserProfileViewController.m */,
+				39BEC16918E14F93001A96BE /* SHCollectionViewFriendCell.h */,
+				39BEC16A18E14F93001A96BE /* SHCollectionViewFriendCell.m */,
+				39CEA47018DF80C500985E9A /* SHFindGroupsViewController.h */,
+				39CEA47118DF80C500985E9A /* SHFindGroupsViewController.m */,
 			);
 			name = "User Profile";
 			sourceTree = "<group>";
@@ -663,7 +683,9 @@
 				39450CBB18DB6EBE00AD4B48 /* SHOnBoardingViewController.m in Sources */,
 				39A71E7E18ABAAC800FB338B /* SHFourObjectsViewController.m in Sources */,
 				39C54C0F18AAA70C006D56FE /* SHMainViewController.m in Sources */,
+				39CEA47218DF80C500985E9A /* SHFindGroupsViewController.m in Sources */,
 				396D74E318A619E0000E2BB4 /* main.m in Sources */,
+				39CEA46F18DEAE6000985E9A /* SHOoVooSDKController.m in Sources */,
 				39F7B9C718B48766006026AA /* SHLoginScreenViewController.m in Sources */,
 				39A71E8118ABAB1500FB338B /* SHGameViewController.m in Sources */,
 				39A71E8618ABABD400FB338B /* SHGameObjectView.m in Sources */,
@@ -685,11 +707,13 @@
 				39B58A1D18A66364001F3601 /* SHNotificationsController.m in Sources */,
 				39A71E8918ABB50D00FB338B /* SHFParticleView.m in Sources */,
 				39E6542918AA5A7200AAFEB5 /* SHHelpers.m in Sources */,
+				39BEC16B18E14F93001A96BE /* SHCollectionViewFriendCell.m in Sources */,
 				39450CB818DB201400AD4B48 /* SHSignUpViewController.m in Sources */,
 				398AFB2818BB249C0023611C /* SHMessagesCoordinator.m in Sources */,
 				392C02F418C207340064391F /* SHControllerContext.m in Sources */,
 				396D74E718A619E0000E2BB4 /* SHAppDelegate.m in Sources */,
 				39A71E7218AB8D0E00FB338B /* SHSubGameConnetionViewCell.m in Sources */,
+				39E414F618E0DAD1003DEC86 /* SHUserProfileController.m in Sources */,
 				3960D5A918BD36B80056D295 /* SHGameObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

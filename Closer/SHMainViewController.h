@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "SHBaseViewController.h"
+@protocol SHMainViewControllerDelegate <NSObject>
+- (void)userDidExitGame;
+@end
 
 @interface SHMainViewController : SHBaseViewController
+@property (nonatomic, weak) id <SHMainViewControllerDelegate> delegate;
 @end

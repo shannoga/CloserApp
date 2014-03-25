@@ -12,6 +12,8 @@
 #import "SHMainViewController.h"
 #import "SHAppThemeClasses.h"
 #import "SHUserProfileViewController.h"
+#import "SHOoVooSDKController.h"
+
 @implementation SHAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -42,16 +44,11 @@
 
 - (void)userLoggedIn
 {
-    
-    ooVooInitResult result = [[ooVooController sharedController] initSdk:@"12349983350802" applicationToken:@"MDAxMDAxAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkilaNavBrtoMUT4vK%2FdxLgQBM%2B%2FGrf8PeRbTs6MY6H7hgDJAW0RL%2FILa%2BhAYr95sU7CYvM1nDd1JuhCTZvn2g8GsN6YSPpkUy7G3OKPvyEQ%3D%3D" baseUrl:@"https://api-sdk.dev.oovoo.com/"];
-    if (result == ooVooInitResultOk)
-    {
-        NSLog(@"logged in with ooVoo SDK version %@",[ooVooController sharedController].sdkVersion);
-    }
-    else
-    {
-        NSLog(@"Error login to ooVoo SDK - %i",result);
-    }
+    [self.controllerContext.sdkController loginToOoVooSDKWithSuccess:^(ooVooInitResult result) {
+        
+    }];
+   
+   
     
     [[SHMessagesCoordinator sharedCoordinator] setPlayerMode:PlayerModeAdult];
     
@@ -68,6 +65,7 @@
     [self.window makeKeyAndVisible];
 }
 
+
 - (void)userLoggedOut
 {
     self.controllerContext = nil;
@@ -81,7 +79,7 @@
 
 - (void)setAppearence
 {
-    [[UILabel appearance] setFont:[UIFont fontWithName:@"Futura-Medium" size:16.0]];
+   // [[UILabel appearance] setFont:[UIFont fontWithName:@"Futura-Medium" size:16.0]];
     [[UITextField appearance] setFont:[UIFont fontWithName:@"Futura-Medium" size:16.0]];
 
     [[SHButton appearance] setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

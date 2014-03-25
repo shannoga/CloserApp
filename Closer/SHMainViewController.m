@@ -9,8 +9,9 @@
 #import "SHMainViewController.h"
 #import "SHLoginScreenViewController.h"
 #import "SHGameSelectionViewController.h"
+#import "UIActionSheet+Blocks.h"
 @interface SHMainViewController ()
-
+- (IBAction)exitGame:(id)sender;
 @end
 
 @implementation SHMainViewController
@@ -30,6 +31,14 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [UIActionSheet showInView:self.view
+                    withTitle:@"Are you sure you want to delete all the things?"
+            cancelButtonTitle:@"Cancel"
+       destructiveButtonTitle:@"Delete all the things"
+            otherButtonTitles:@[@"Just some of the things", @"Most of the things"]
+                     tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
+                         NSLog(@"Chose %@", [actionSheet buttonTitleAtIndex:buttonIndex]);
+                     }];
 
 }
 
@@ -44,6 +53,11 @@
         
         NSLog(@"menu contorller : %@",navController.viewControllers[0]);
     }
+}
+
+- (IBAction)exitGame:(id)sender
+{
+    [self.delegate userDidExitGame];
 }
 
 @end

@@ -7,9 +7,14 @@
 //
 
 #import "SHSignUpViewController.h"
+#import "UIAlertView+Blocks.h"
+#import "MBProgressHUD.h"
 
 @interface SHSignUpViewController ()
-
+@property (nonatomic,weak) IBOutlet UITextField *userNameLabel;
+@property (nonatomic,weak) IBOutlet UITextField *passwordLabel;
+@property (nonatomic,weak) IBOutlet UITextField *emailLabel;
+- (IBAction)signup:(id)sender;
 @end
 
 @implementation SHSignUpViewController
@@ -42,6 +47,58 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (IBAction)signup:(id)sender
+{
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = NSLocalizedString(@"Logging in",nil);
+    
+    PFUser *user = [PFUser user];
+    user.username = _userNameLabel.text;
+    user.password = _passwordLabel.text;
+    user.email = _emailLabel.text;
+    
+    // other fields can be set just like with PFObject
+    // user[@"phone"] = @"415-392-0202";
+    
+    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        
+        if (!error) {
+            // Hooray! Let them use the app now.
+            [self userLoggedIn];
+            [self setUpTrialCreditsForUser:user];
+            
+        } else {
+            NSString *errorString = [error userInfo][@"error"];
+            NSLog(@"error = %@",errorString);
+            [self presentAlertWithError:errorString];
+            
+            // Show the errorString somewhere and let the user try again.
+        }
+    }];
+}
+
+
+- (void)presentAlertWithError:(NSString*)errorString
+{
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:errorString delegate:self cancelButtonTitle:NSLocalizedString(@"Close", nil) otherButtonTitles:nil, nil];
+    [av show];
+}
+
+- (void)setUpTrialCreditsForUser:(PFUser*)user
+{
+    user[@"credits"] = @0;
+    //  user[@"groupName"] = @"asifshani";
+    [user saveInBackground];
+}
+
+- (void)userLoggedIn
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoggdIn" object:nil];
+}
+
 
 //#pragma mark - Table view data source
 //

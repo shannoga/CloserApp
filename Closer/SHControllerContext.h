@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "SHGamesMenuController.h"
-@class SHGamesController;
+
+@class SHGamesController, SHOoVooSDKController;
 
 @interface SHControllerContext : NSObject
 @property (nonatomic,strong) SHGamesMenuController *menuController;
 @property (nonatomic,strong) SHGamesController *gamesController;
+@property (nonatomic,strong) SHOoVooSDKController *sdkController;
+
 
 - (void)setUpControllers;
 @end

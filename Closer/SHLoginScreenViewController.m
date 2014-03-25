@@ -82,37 +82,6 @@
     }];
 }
 
-- (IBAction)signup:(id)sender
-{
-    
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = NSLocalizedString(@"Logging in",nil);
-    
-    PFUser *user = [PFUser user];
-    user.username = _userNameLabel.text;
-    user.password = _passwordLabel.text;
-    user.email = _emailLabel.text;
-    
-    // other fields can be set just like with PFObject
-    // user[@"phone"] = @"415-392-0202";
-    
-    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-
-        if (!error) {
-            // Hooray! Let them use the app now.
-            [self userLoggedIn];
-            [self setUpTrialCreditsForUser:user];
-            
-        } else {
-            NSString *errorString = [error userInfo][@"error"];
-            NSLog(@"error = %@",errorString);
-            [self presentAlertWithError:errorString];
-
-            // Show the errorString somewhere and let the user try again.
-        }
-    }];
-}
 
 
 - (void)presentAlertWithError:(NSString*)errorString
