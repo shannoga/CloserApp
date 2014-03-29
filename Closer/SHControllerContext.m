@@ -10,6 +10,7 @@
 #import "SHGamesMenuController.h"
 #import "SHGamesController.h"
 #import "SHOoVooSDKController.h"
+#import "SHPuserController.h"
 
 @implementation SHControllerContext
 
@@ -23,5 +24,8 @@
     
     self.sdkController = [[SHOoVooSDKController alloc] init];
     self.sdkController.context = self;
+    
+    self.pusherController = [[SHPuserController alloc] init];
+    self.pusherController.context = self;
 }
 @end

@@ -10,15 +10,19 @@
 
 @implementation SHCollectionViewFriendCell
 
-- (id)initWithFrame:(CGRect)frame
+- (void)awakeFromNib
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+    self.friendImageView.layer.cornerRadius = CGRectGetHeight(self.friendImageView.bounds)/2;
+    self.friendImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.friendImageView.layer.borderWidth = 2;
+    self.friendImageView.layer.masksToBounds = YES;
+    self.contentView.backgroundColor = [UIColor clearColor];
 }
 
+- (void)layoutSubviews
+{
+    
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

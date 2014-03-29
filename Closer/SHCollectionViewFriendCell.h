@@ -11,4 +11,5 @@
 @interface SHCollectionViewFriendCell : UICollectionViewCell
 @property (nonatomic, weak) IBOutlet PFImageView *friendImageView;
 @property (nonatomic, weak) IBOutlet UILabel *friendNameLabel;
+@property (nonatomic) BOOL isMe;
 @end

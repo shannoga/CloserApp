@@ -7,11 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SHBaseViewController.h"
+#import "SHBaseTableViewController.h"
 
-
-
-@interface SHUserProfileViewController : UITableViewController
-@property (nonatomic, strong) SHControllerContext *controllerContext;
+@interface SHUserProfileViewController : SHBaseTableViewController
 
 @end

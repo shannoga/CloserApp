@@ -18,7 +18,11 @@
     #import "SHHelpers.h"
     #import <Parse/Parse.h>
     #import "SHGamesProvider.h"
-#endif
 
+#endif
+#import <UIActionSheet+Blocks.h>
+#import <UIAlertView+Blocks.h>
+#import <MBProgressHUD.h>
+#import <Pusher/Pusher.h>
 
 #define OOVOOParticipantIdKey @"OOVOOParticipantIdKey"

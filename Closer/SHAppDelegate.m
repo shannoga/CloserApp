@@ -13,6 +13,12 @@
 #import "SHAppThemeClasses.h"
 #import "SHUserProfileViewController.h"
 #import "SHOoVooSDKController.h"
+#import "SHPuserController.h"
+
+@interface SHAppDelegate()
+
+
+@end
 
 @implementation SHAppDelegate
 
@@ -26,6 +32,10 @@
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     [self setAppearence];
+    
+    self.controllerContext = [[SHControllerContext alloc] init];
+    [self.controllerContext setUpControllers];
+    
     if ([PFUser currentUser])
     {
         [self userLoggedIn];
@@ -38,23 +48,49 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoggedIn) name:@"UserLoggdIn" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoggedOut) name:@"UserLoggdOut" object:nil];
     
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+     (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
     return YES;
 }
 
 - (void)userLoggedIn
 {
+    [self loginToOoVoo];
+    [self.controllerContext.pusherController connectToPuser];
+    [[SHMessagesCoordinator sharedCoordinator] setPlayerMode:PlayerModeAdult];
+    [self updateUIforLogin];
+
+}
+
+
+- (void)userLoggedOut
+{
+    [self updateUIforLogout];
+    [self.controllerContext.pusherController disconnectFromPusher];
+    
+    [PFCloud callFunctionInBackground:@"hello"
+                       withParameters:@{}
+                                block:^(NSString *result, NSError *error) {
+                                    if (!error) {
+                                        // result is @"Hello world!"
+                                        NSLog(@"result");
+                                    }
+                                }];
+
+}
+
+- (void)loginToOoVoo
+{
     [self.controllerContext.sdkController loginToOoVooSDKWithSuccess:^(ooVooInitResult result) {
         
     }];
-   
-   
-    
-    [[SHMessagesCoordinator sharedCoordinator] setPlayerMode:PlayerModeAdult];
-    
-    self.controllerContext = [[SHControllerContext alloc] init];
-    [self.controllerContext setUpControllers];
-    
+}
+
+
+
+- (void)updateUIforLogin
+{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:[NSBundle mainBundle]];
     UINavigationController *nvc = (UINavigationController*)[storyboard instantiateInitialViewController];
     SHUserProfileViewController *vc = (SHUserProfileViewController*) nvc.viewControllers[0];
@@ -65,10 +101,8 @@
     [self.window makeKeyAndVisible];
 }
 
-
-- (void)userLoggedOut
+- (void)updateUIforLogout
 {
-    self.controllerContext = nil;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:[NSBundle mainBundle]];
     UINavigationController *vc =[storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
     self.window = nil;
@@ -127,5 +161,17 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    // Store the deviceToken in the current Installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    currentInstallation[@"user"] = [PFUser currentUser];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+}
+
+
 
 @end

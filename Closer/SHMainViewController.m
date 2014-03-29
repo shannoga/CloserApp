@@ -31,14 +31,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [UIActionSheet showInView:self.view
-                    withTitle:@"Are you sure you want to delete all the things?"
-            cancelButtonTitle:@"Cancel"
-       destructiveButtonTitle:@"Delete all the things"
-            otherButtonTitles:@[@"Just some of the things", @"Most of the things"]
-                     tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
-                         NSLog(@"Chose %@", [actionSheet buttonTitleAtIndex:buttonIndex]);
-                     }];
+   
 
 }
 

@@ -19,6 +19,13 @@
 		395605D418B4124300DBD46B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 395605D318B4124300DBD46B /* CoreLocation.framework */; };
 		395605D618B4126500DBD46B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 395605D518B4126500DBD46B /* Security.framework */; };
 		395605D818B4126D00DBD46B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 395605D718B4126D00DBD46B /* StoreKit.framework */; };
+		395F3A7318E36D6400FE9AEF /* GetGravatar.m in Sources */ = {isa = PBXBuildFile; fileRef = 395F3A7218E36D6400FE9AEF /* GetGravatar.m */; };
+		395F3A7918E3F97600FE9AEF /* avatar_placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 395F3A7718E3F97600FE9AEF /* avatar_placeholder@2x.png */; };
+		395F3A7A18E3F97600FE9AEF /* avatar_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 395F3A7818E3F97600FE9AEF /* avatar_placeholder.png */; };
+		395F3A7D18E4A5C900FE9AEF /* SHAddUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395F3A7C18E4A5C900FE9AEF /* SHAddUsersViewController.m */; };
+		3960A92C18E5DB6300D2E2EA /* SHBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3960A92B18E5DB6300D2E2EA /* SHBaseTableViewController.m */; };
+		3960A92F18E6CA0A00D2E2EA /* SHPuserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3960A92E18E6CA0A00D2E2EA /* SHPuserController.m */; };
+		3960A93218E6E91A00D2E2EA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3960A93118E6E91A00D2E2EA /* Reachability.m */; };
 		3960D5A918BD36B80056D295 /* SHGameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3960D5A818BD36B80056D295 /* SHGameObject.m */; };
 		396727D318DB7D790022BE01 /* stub.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 396727D218DB7D790022BE01 /* stub.jpg */; };
 		396727D718DB9A750022BE01 /* SHAppThemeClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = 396727D618DB9A750022BE01 /* SHAppThemeClasses.m */; };
@@ -122,6 +129,18 @@
 		395605D318B4124300DBD46B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		395605D518B4126500DBD46B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		395605D718B4126D00DBD46B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		395F3A7118E36D6400FE9AEF /* GetGravatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetGravatar.h; sourceTree = "<group>"; };
+		395F3A7218E36D6400FE9AEF /* GetGravatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetGravatar.m; sourceTree = "<group>"; };
+		395F3A7718E3F97600FE9AEF /* avatar_placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar_placeholder@2x.png"; sourceTree = "<group>"; };
+		395F3A7818E3F97600FE9AEF /* avatar_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar_placeholder.png; sourceTree = "<group>"; };
+		395F3A7B18E4A5C900FE9AEF /* SHAddUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHAddUsersViewController.h; sourceTree = "<group>"; };
+		395F3A7C18E4A5C900FE9AEF /* SHAddUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHAddUsersViewController.m; sourceTree = "<group>"; };
+		3960A92A18E5DB6300D2E2EA /* SHBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHBaseTableViewController.h; sourceTree = "<group>"; };
+		3960A92B18E5DB6300D2E2EA /* SHBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHBaseTableViewController.m; sourceTree = "<group>"; };
+		3960A92D18E6CA0A00D2E2EA /* SHPuserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPuserController.h; sourceTree = "<group>"; };
+		3960A92E18E6CA0A00D2E2EA /* SHPuserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPuserController.m; sourceTree = "<group>"; };
+		3960A93018E6E91A00D2E2EA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		3960A93118E6E91A00D2E2EA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		3960D5A718BD36B80056D295 /* SHGameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHGameObject.h; sourceTree = "<group>"; };
 		3960D5A818BD36B80056D295 /* SHGameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHGameObject.m; sourceTree = "<group>"; };
 		396727D218DB7D790022BE01 /* stub.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = stub.jpg; sourceTree = "<group>"; };
@@ -287,6 +306,8 @@
 				39A71EE718AC9B9400FB338B /* SHGamesDataSource.m */,
 				39CEA46D18DEAE6000985E9A /* SHOoVooSDKController.h */,
 				39CEA46E18DEAE6000985E9A /* SHOoVooSDKController.m */,
+				3960A92D18E6CA0A00D2E2EA /* SHPuserController.h */,
+				3960A92E18E6CA0A00D2E2EA /* SHPuserController.m */,
 			);
 			name = "Controllers and Coordinators";
 			sourceTree = "<group>";
@@ -298,6 +319,8 @@
 				396D74EF18A619E0000E2BB4 /* SHVideoConferenceViewController.m */,
 				392C02FB18C20C440064391F /* SHBaseViewController.h */,
 				392C02FC18C20C440064391F /* SHBaseViewController.m */,
+				3960A92A18E5DB6300D2E2EA /* SHBaseTableViewController.h */,
+				3960A92B18E5DB6300D2E2EA /* SHBaseTableViewController.m */,
 				39C54C0D18AAA70C006D56FE /* SHMainViewController.h */,
 				39C54C0E18AAA70C006D56FE /* SHMainViewController.m */,
 				39C54C1018AAA728006D56FE /* SHGamesViewController.h */,
@@ -395,6 +418,10 @@
 				396D74DD18A619E0000E2BB4 /* Supporting Files */,
 				396727D518DB9A750022BE01 /* SHAppThemeClasses.h */,
 				396727D618DB9A750022BE01 /* SHAppThemeClasses.m */,
+				3960A93018E6E91A00D2E2EA /* Reachability.h */,
+				3960A93118E6E91A00D2E2EA /* Reachability.m */,
+				395F3A7118E36D6400FE9AEF /* GetGravatar.h */,
+				395F3A7218E36D6400FE9AEF /* GetGravatar.m */,
 			);
 			path = Closer;
 			sourceTree = "<group>";
@@ -498,6 +525,8 @@
 				39E414F518E0DAD1003DEC86 /* SHUserProfileController.m */,
 				39C522BE18DE2D1500E6430B /* SHUserProfileViewController.h */,
 				39C522BF18DE2D1500E6430B /* SHUserProfileViewController.m */,
+				395F3A7B18E4A5C900FE9AEF /* SHAddUsersViewController.h */,
+				395F3A7C18E4A5C900FE9AEF /* SHAddUsersViewController.m */,
 				39BEC16918E14F93001A96BE /* SHCollectionViewFriendCell.h */,
 				39BEC16A18E14F93001A96BE /* SHCollectionViewFriendCell.m */,
 				39CEA47018DF80C500985E9A /* SHFindGroupsViewController.h */,
@@ -509,6 +538,8 @@
 		39C54BFA18AA75C0006D56FE /* images */ = {
 			isa = PBXGroup;
 			children = (
+				395F3A7718E3F97600FE9AEF /* avatar_placeholder@2x.png */,
+				395F3A7818E3F97600FE9AEF /* avatar_placeholder.png */,
 				396727D218DB7D790022BE01 /* stub.jpg */,
 				39A71E8A18ABB57F00FB338B /* Particles_fire.png */,
 				39A71E9218ABD16E00FB338B /* particleStar.png */,
@@ -577,6 +608,11 @@
 				TargetAttributes = {
 					396D74D218A619E0000E2BB4 = {
 						DevelopmentTeam = J8H6BGY3VL;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					396D74F618A619E0000E2BB4 = {
 						TestTargetID = 396D74D218A619E0000E2BB4;
@@ -617,7 +653,9 @@
 				396D74F218A619E0000E2BB4 /* Images.xcassets in Resources */,
 				39F218BD18C1246E00938E2D /* GamesMenu.plist in Resources */,
 				39A71E8B18ABB57F00FB338B /* Particles_fire.png in Resources */,
+				395F3A7A18E3F97600FE9AEF /* avatar_placeholder.png in Resources */,
 				39C54C0A18AAA62F006D56FE /* giraffe.png in Resources */,
+				395F3A7918E3F97600FE9AEF /* avatar_placeholder@2x.png in Resources */,
 				396D74EA18A619E0000E2BB4 /* Main_iPhone.storyboard in Resources */,
 				39C54C0218AA75F7006D56FE /* 139-Play@2x.png in Resources */,
 				39C54C0B18AAA62F006D56FE /* chicken.png in Resources */,
@@ -690,14 +728,18 @@
 				39A71E8118ABAB1500FB338B /* SHGameViewController.m in Sources */,
 				39A71E8618ABABD400FB338B /* SHGameObjectView.m in Sources */,
 				396D74F018A619E0000E2BB4 /* SHVideoConferenceViewController.m in Sources */,
+				395F3A7318E36D6400FE9AEF /* GetGravatar.m in Sources */,
 				39A71EE818AC9B9400FB338B /* SHGamesDataSource.m in Sources */,
+				3960A92C18E5DB6300D2E2EA /* SHBaseTableViewController.m in Sources */,
 				39C54C1218AAA729006D56FE /* SHGamesViewController.m in Sources */,
 				39C54C1518AAB28D006D56FE /* SHGameSelectionViewController.m in Sources */,
 				39F218B518BFBE9A00938E2D /* SHGameContext.m in Sources */,
 				39C54C1818AAB580006D56FE /* SHGameDescriptionViewController.m in Sources */,
 				392C02FD18C20C440064391F /* SHBaseViewController.m in Sources */,
 				39F218C718C1FA7900938E2D /* SHGamesMenuController.m in Sources */,
+				395F3A7D18E4A5C900FE9AEF /* SHAddUsersViewController.m in Sources */,
 				39A71EEB18AC9C0900FB338B /* SHGamesController.m in Sources */,
+				3960A92F18E6CA0A00D2E2EA /* SHPuserController.m in Sources */,
 				39A71E7B18ABAA6E00FB338B /* SHSingleObjectGameViewController.m in Sources */,
 				39450CBE18DB6F1A00AD4B48 /* SHOnboardingSinglePageViewController.m in Sources */,
 				39F218C018C1AE1400938E2D /* SHGamesProvider.m in Sources */,
@@ -710,6 +752,7 @@
 				39BEC16B18E14F93001A96BE /* SHCollectionViewFriendCell.m in Sources */,
 				39450CB818DB201400AD4B48 /* SHSignUpViewController.m in Sources */,
 				398AFB2818BB249C0023611C /* SHMessagesCoordinator.m in Sources */,
+				3960A93218E6E91A00D2E2EA /* Reachability.m in Sources */,
 				392C02F418C207340064391F /* SHControllerContext.m in Sources */,
 				396D74E718A619E0000E2BB4 /* SHAppDelegate.m in Sources */,
 				39A71E7218AB8D0E00FB338B /* SHSubGameConnetionViewCell.m in Sources */,
@@ -874,7 +917,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Closer/Closer-Prefix.pch";
 				INFOPLIST_FILE = "Closer/Closer-Info.plist";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-licucore",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "\"$SRCROOT\"/oovoo.framework/Headers/**";
@@ -898,7 +944,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Closer/Closer-Prefix.pch";
 				INFOPLIST_FILE = "Closer/Closer-Info.plist";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-licucore",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "\"$SRCROOT\"/oovoo.framework/Headers/**";

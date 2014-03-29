@@ -70,6 +70,7 @@
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = NSLocalizedString(@"Logging in",nil);
+    
     [PFUser logInWithUsernameInBackground:_userNameLabel.text password:_passwordLabel.text block:^(PFUser *user, NSError *error) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         if (!error) {

@@ -45,15 +45,16 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    CGFloat participant_diameter = CGRectGetHeight(self.view.bounds)-20;
-    CGFloat preview_diameter = participant_diameter/3;
+
 
     NSLog(@"self.parentViewController.view - %@",self.parentViewController.view);
     
     //participant view
     
-    self.participantVideoView = [[ooVooVideoView alloc] initWithFrame:CGRectMake((screenWidth()-participant_diameter)/2, (CGRectGetHeight(self.view.bounds)-participant_diameter)/2, participant_diameter, participant_diameter)];
-    self.participantVideoViewOverlay = [[ooVooVideoView alloc] initWithFrame:CGRectMake(0, 0, participant_diameter, participant_diameter)];
+    CGFloat participant_diameter = CGRectGetHeight(self.view.bounds)-20;
+    CGFloat preview_diameter = participant_diameter/3;
+    
+    self.participantVideoViewOverlay = [[UIView alloc] initWithFrame:CGRectMake(0, 0, participant_diameter, participant_diameter)];
     self.participantVideoView.layer.cornerRadius = self.participantVideoViewOverlay.layer.cornerRadius = participant_diameter/2;
     self.participantVideoView.layer.masksToBounds = self.participantVideoViewOverlay.layer.masksToBounds = YES;
     self.participantVideoView.backgroundColor = self.participantVideoViewOverlay.backgroundColor = [UIColor blueColor];
@@ -61,8 +62,7 @@
     [self.participantVideoView addSubview:self.participantVideoViewOverlay];
     
     
-    //preview view
-    self.myVideoView = [[ooVooVideoView alloc] initWithFrame:CGRectMake(15, 20, preview_diameter, preview_diameter)];
+  
     self.myVideoViewOverlay = [[UIView alloc] initWithFrame:CGRectMake(0, 0, preview_diameter, preview_diameter)];
     self.myVideoView.layer.cornerRadius = self.myVideoViewOverlay.layer.cornerRadius =preview_diameter / 2;
     self.myVideoView.layer.masksToBounds = self.myVideoViewOverlay.layer.masksToBounds = YES;
@@ -80,6 +80,15 @@
     [self.view layoutIfNeeded];
 }
 
+- (void)addVideoView
+{
+    CGFloat participant_diameter = CGRectGetHeight(self.view.bounds)-20;
+    CGFloat preview_diameter = participant_diameter/3;
+    self.participantVideoView = [[ooVooVideoView alloc] initWithFrame:CGRectMake((screenWidth()-participant_diameter)/2, (CGRectGetHeight(self.view.bounds)-participant_diameter)/2, participant_diameter, participant_diameter)];
+    
+    //preview view
+    self.myVideoView = [[ooVooVideoView alloc] initWithFrame:CGRectMake(15, 20, preview_diameter, preview_diameter)];
+}
 - (void)addObservers
 {
     

@@ -93,24 +93,21 @@
 - (void)getActiveGroupUsersWithBlock:(void (^)(NSArray *users,NSError *error))completion
 {
     
-    // first we will create a query on the Book object
     PFQuery *query = [PFUser query];
-    
-    // now we will query the authors relation to see if the author object
-    // we have is contained therein
+
     [query whereKey:@"groups" equalTo:self.activeGroup];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            // The find succeeded.
             NSLog(@"Successfully retrieved %d scores.", objects.count);
-            // Do something with the found objects
+            NSMutableArray *users = [NSMutableArray arrayWithArray:objects];
             for (PFUser *user in objects) {
-                NSLog(@"%@", user.objectId);
-                NSLog(@"%@", user.username);
+                //move currect user to the begginig of the array
+                if ([[PFUser currentUser].username isEqualToString:user.username]) {
+                    [users removeObject:user];
+                }
             }
-            completion(objects,nil);
+            completion(users,nil);
         } else {
-            // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
             completion(nil,error);
 
