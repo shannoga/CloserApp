@@ -41,15 +41,30 @@
 
 - (void)listenToPusherCahnnel:(NSString*)channelName eventName:(NSString*)eventName
 {
-    self.groupChannel = [self.pusher subscribeToPresenceChannelNamed:channelName];
+    self.groupChannel = [self.pusher subscribeToPresenceChannelNamed:channelName delegate:self];
     [self.groupChannel bindToEventNamed:eventName handleWithBlock:^(PTPusherEvent *channelEvent) {
+        // channelEvent.data is a NSDictianary of the JSON object received
+        NSLog(@"");
+    }];
+    
+    [self.groupChannel bindToEventNamed:@"client-StartGame" handleWithBlock:^(PTPusherEvent *channelEvent) {
         // channelEvent.data is a NSDictianary of the JSON object received
         NSLog(@"");
     }];
 }
 
+- (void)sendEventToChannelWithData:(NSDictionary*)data
+{
+    if ([self.groupChannel isSubscribed])
+    {
+        [self.groupChannel triggerEventNamed:@"client-StartGame" data:data];
+    }
+    
+    
+}
 
 
+#pragma mark - PTPusherDelegate
 
 
 - (BOOL)pusher:(PTPusher *)pusher connectionWillConnect:(PTPusherConnection *)connection
@@ -131,7 +146,7 @@
 
 - (void)pusher:(PTPusher *)pusher didReceiveErrorEvent:(PTPusherErrorEvent *)errorEvent
 {
-    NSLog(@"[PUSHER] did receive error event with message = %@ code = %i",errorEvent.message,errorEvent.code);
+    NSLog(@"[PUSHER] did receive error event with message = %@ code = %ld",errorEvent.message,(long)errorEvent.code);
 
 }
 
@@ -142,17 +157,19 @@
 {
     NSLog(@"[PUSHER] did subscribe to presense channel named = %@",channel.name);
     NSLog(@"[PUSHER] channel members = %@",self.groupChannel.members);
+    [self.delegate didSubscribeToPresenseChannelWithMembers:self.groupChannel.members];
 }
 
 - (void)presenceChannel:(PTPusherPresenceChannel *)channel memberAdded:(PTPusherChannelMember *)member
 {
     NSLog(@"[PUSHER] member subscribed to channel = %@",member.userID);
+    [self.delegate userDidSubscribeWithId:member.userID];
 }
 
 - (void)presenceChannel:(PTPusherPresenceChannel *)channel memberRemoved:(PTPusherChannelMember *)member
 {
     NSLog(@"[PUSHER] member unsubscribed to channel = %@",member.userID);
-
+    [self.delegate userDidUnSubscribeWithId:member.userID];
 }
 
 @end

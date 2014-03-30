@@ -7,12 +7,24 @@
 //
 
 #import "SHUserProfileController.h"
-
-@interface SHUserProfileController()
+#import "SHPuserController.h"
+@interface SHUserProfileController()<SHPuserControllerDelegate>
 @property (nonatomic, strong) PFObject *activeGroup;
+@property (nonatomic, strong) SHControllerContext *controllerContext;
+@property (nonatomic, strong) NSMutableArray *activeUsers;
 @end
 
 @implementation SHUserProfileController
+
+- (instancetype)initWithControllerContext:(SHControllerContext*)context
+{
+    self = [super init];
+    if (self) {
+        self.controllerContext = context;
+        context.pusherController.delegate = self;
+    }
+    return self;
+}
 
 - (void)activeGroupWithBlock:(void (^)(PFObject *group))completion
 {
@@ -98,7 +110,7 @@
     [query whereKey:@"groups" equalTo:self.activeGroup];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            NSLog(@"Successfully retrieved %d scores.", objects.count);
+            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
             NSMutableArray *users = [NSMutableArray arrayWithArray:objects];
             for (PFUser *user in objects) {
                 //move currect user to the begginig of the array
@@ -151,4 +163,25 @@
 
 }
 
+#pragma mark - SHPuserControllerDelegate
+
+- (void)didSubscribeToPresenseChannelWithMembers:(PTPusherChannelMembers *)members
+{
+    [members enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        PTPusherChannelMember *member = (PTPusherChannelMember*)obj;
+        [self.activeUsers addObject:member.userID];
+        
+    }];
+}
+
+- (void)userDidSubscribeWithId:(NSString *)userId
+{
+    [self.activeUsers removeObject:userId];
+}
+
+- (void)userDidUnSubscribeWithId:(NSString *)userId
+{
+    [self.activeUsers addObject:userId];
+
+}
 @end

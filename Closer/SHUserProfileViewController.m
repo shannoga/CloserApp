@@ -33,20 +33,22 @@
 
 - (void)awakeFromNib
 {
-    self.profileController = [[SHUserProfileController alloc] init];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.profileController = [[SHUserProfileController alloc] initWithControllerContext:self.controllerContext];
+
     self.groupFriendsView.backgroundColor = [UIColor clearColor];
     self.avatarImageView.image = [UIImage imageNamed:@"avatar_placeholder"];
     self.groupFriendsView.scrollEnabled = YES;
-    [self.controllerContext.pusherController listenToPusherCahnnel:[PFUser currentUser].username eventName:@"StartGame"];
+   
     [self showHud];
     [self.profileController activeGroupWithBlock:^(PFObject *group) {
         if (group) {
+            [self.controllerContext.pusherController listenToPusherCahnnel:group.objectId eventName:@"StartGame"];
+
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.activeGroupLabel.text = [PFUser currentUser].username;
                 self.avatarImageView.image = [UIImage imageNamed:@"avatar_placeholder"];
@@ -147,32 +149,33 @@
     else
     {
         PFUser *user = [self.friends objectAtIndex:indexPath.row];
-        // Find users near a given location
-        //PFQuery *userQuery = [PFUser query];
-      //  [userQuery whereKey:@"location"
-         //      nearGeoPoint:stadiumLocation
-             //   withinMiles:[NSNumber numberWithInt:1]]
-        
-        // Find devices associated with these users
-        PFQuery *pushQuery = [PFInstallation query];
-        [pushQuery whereKey:@"user" equalTo:user];
-        
-        // Send push notification to query
-        PFPush *push = [[PFPush alloc] init];
-       // [push setData:<#(NSDictionary *)#>]
-        [push setQuery:pushQuery]; // Set our Installation query
-        [push setMessage:@"Free hotdogs at the Parse concession stand!"];
-        [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if(error)
-            {
-                NSLog(@"error = %@", error.userInfo);
-            }
-            else if (succeeded)
-            {
-                NSLog(@"push sent to : %@", user.username);
-
-            }
-        }];
+//        // Find users near a given location
+//        //PFQuery *userQuery = [PFUser query];
+//      //  [userQuery whereKey:@"location"
+//         //      nearGeoPoint:stadiumLocation
+//             //   withinMiles:[NSNumber numberWithInt:1]]
+//        
+//        // Find devices associated with these users
+//        PFQuery *pushQuery = [PFInstallation query];
+//        [pushQuery whereKey:@"user" equalTo:user];
+//        
+//        // Send push notification to query
+//        PFPush *push = [[PFPush alloc] init];
+//       // [push setData:<#(NSDictionary *)#>]
+//        [push setQuery:pushQuery]; // Set our Installation query
+//        [push setMessage:@"Free hotdogs at the Parse concession stand!"];
+//        [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//            if(error)
+//            {
+//                NSLog(@"error = %@", error.userInfo);
+//            }
+//            else if (succeeded)
+//            {
+//                NSLog(@"push sent to : %@", user.username);
+//
+//            }
+//        }];
+        [self.controllerContext.pusherController sendEventToChannelWithData:@{@"sender":[PFUser currentUser].objectId,@"reciver":user.objectId}];
         [self performSegueWithIdentifier:@"startSession" sender:self];
     }
 }

@@ -53,6 +53,10 @@
     
     CGFloat participant_diameter = CGRectGetHeight(self.view.bounds)-20;
     CGFloat preview_diameter = participant_diameter/3;
+    self.participantVideoView = [[ooVooVideoView alloc] initWithFrame:CGRectMake((screenWidth()-participant_diameter)/2, (CGRectGetHeight(self.view.bounds)-participant_diameter)/2, participant_diameter, participant_diameter)];
+    
+    //preview view
+    self.myVideoView = [[ooVooVideoView alloc] initWithFrame:CGRectMake(15, 20, preview_diameter, preview_diameter)];
     
     self.participantVideoViewOverlay = [[UIView alloc] initWithFrame:CGRectMake(0, 0, participant_diameter, participant_diameter)];
     self.participantVideoView.layer.cornerRadius = self.participantVideoViewOverlay.layer.cornerRadius = participant_diameter/2;
