@@ -22,10 +22,10 @@
     if (self) {
         self.dataSource = [[SHGamesDataSource alloc] init];
         
-       if (![[SHMessagesCoordinator sharedCoordinator] playerIsAdmin]) {
+       //if ([[SHMessagesCoordinator sharedCoordinator] playerMode] == PlayerModeKid) {
             [self startListeningForProgressMessages];
             [self startListeningForFeedbackMessages];
-       }
+       //}
     }
     return self;
 }
@@ -76,7 +76,7 @@
 
 - (void)adminDidMoveToStepAtIndex:(NSUInteger)index
 {
-    if ([[SHMessagesCoordinator sharedCoordinator] playerIsAdmin]) {
+    if ([[SHMessagesCoordinator sharedCoordinator] playerMode] == PlayerModeAdult) {
         [[SHMessagesCoordinator sharedCoordinator] sendMessageOfType:MessegeTypeProgress message:ProgressMessageGoToGameStep index:index];
     }
     else
@@ -87,7 +87,13 @@
 
 - (void)adminDidGotBackToStepAtIndex:(NSUInteger)index
 {
-    [self.gameViewController gotoStepAtIndex:index];
+    if ([[SHMessagesCoordinator sharedCoordinator] playerMode] == PlayerModeAdult) {
+        [[SHMessagesCoordinator sharedCoordinator] sendMessageOfType:MessegeTypeProgress message:ProgressMessageGoToGameStep index:index];
+    }
+    else
+    {
+        [self.gameViewController gotoStepAtIndex:index];
+    }
 }
 
 #pragma mark -feedbacks

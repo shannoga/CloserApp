@@ -72,7 +72,7 @@
             
         } else {
             NSString *errorString = [error userInfo][@"error"];
-            NSLog(@"error = %@",errorString);
+            DDLogError(@"error = %@",errorString);
             [self presentAlertWithError:errorString];
             
             // Show the errorString somewhere and let the user try again.

@@ -10,6 +10,8 @@
 #import "SHNotificationsController.h"
 #import "ooVooController.h"
 #import "ooVooVideoView.h"
+#import "SHOoVooSDKController.h"
+#import "SHUser.h"
 
 @interface SHVideoConferenceViewController ()
 @property (nonatomic, strong) NSString * myParticipantId;
@@ -36,19 +38,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self addObservers];
-    
     self.cameraEnabled = NO;
-    
 }
 
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
 
-
-    NSLog(@"self.parentViewController.view - %@",self.parentViewController.view);
-    
     //participant view
     
     CGFloat participant_diameter = CGRectGetHeight(self.view.bounds)-20;
@@ -84,6 +80,13 @@
     [self.view layoutIfNeeded];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self joinConference];
+
+}
+
 - (void)addVideoView
 {
     CGFloat participant_diameter = CGRectGetHeight(self.view.bounds)-20;
@@ -93,50 +96,82 @@
     //preview view
     self.myVideoView = [[ooVooVideoView alloc] initWithFrame:CGRectMake(15, 20, preview_diameter, preview_diameter)];
 }
-- (void)addObservers
+
+
+- (void)startListeningToSessionEvents
 {
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(conferenceDidBegin:)
-                                                 name:OOVOOConferenceDidBeginNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(conferenceDidFail:)
-                                                 name:OOVOOConferenceDidFailNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(conferenceDidEnd:)
-                                                 name:OOVOOConferenceDidEndNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(participantDidLeave:) name:OOVOOParticipantDidLeaveNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(participantDidJoin:) name:OOVOOParticipantDidJoinNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(participantStateChanged:)
-                                                 name:OOVOOParticipantVideoStateDidChangeNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(videoDidStart:)
-                                                 name:OOVOOVideoDidStartNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(videoDidStop:)
-                                                 name:OOVOOVideoDidStopNotification
-                                               object:nil];
+    [self.controllerContext.sdkController startListeningToOoVooSessionHandler:^(SHSDKConferenseEvent sessionEvent, NSDictionary *eventInfo) {
+        switch (sessionEvent) {
+            case SHSDKConferenseEventDidBegin:
+                [self conferenceDidBegin:eventInfo[OOVOOParticipantIdKey]];
+                break;
+            case SHSDKConferenseEventDidFail:
+                [self conferenceDidFail];
+                break;
+            case SHSDKConferenseEventDidEnd:
+                [self conferenceDidEnd];
+                break;
+            case SHSDKConferenseEventParticipantDidJoin:
+            {
+                NSString *changedParticipantID = eventInfo[OOVOOParticipantIdKey];
+                [self participantDidJoin:changedParticipantID];
+            }
+                break;
+            case SHSDKConferenseEventParticipantDidLeave:
+            {
+                NSString *changedParticipantID = eventInfo[OOVOOParticipantIdKey];
+                [self participantDidLeave:changedParticipantID];
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }];
 }
 
-- (void)removeObservers
+- (void)startListeningToVideoEvents
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self.controllerContext.sdkController startListeningToOoVooVideoHandler:^(SHSDKVideoEvent videoEvent, NSDictionary *eventInfo) {
+        switch (videoEvent) {
+            case SHSDKVideoEventVideoStateChanged:
+            {
+                NSString *changedParticipantID = eventInfo[OOVOOParticipantIdKey];
+                ooVooVideoState state = (ooVooVideoState)[eventInfo[OOVOOParticipantStateKey] integerValue];
+                [self participantStateChanged:state changedParticipantId:changedParticipantID];
+            }
+                
+            case SHSDKVideoEventVideoStarted:
+                [self videoDidStart];
+                break;
+            case SHSDKVideoEventVideoStoped:
+                [self videoDidStop];
+                break;
+            case SHSDKVideoEventSpeakerMuted:
+                
+                break;
+            case SHSDKVideoEventSpeakerUnmuted:
+                
+                break;
+            case SHSDKVideoEventMicrophoneMuted:
+                
+                break;
+            case SHSDKVideoEventMicrophoneUnmuted:
+                
+                break;
+                
+            default:
+                break;
+        }
+    }];
 }
 
-- (void)conferenceDidBegin:(NSNotification*)notification
+
+
+
+- (void)conferenceDidBegin:(NSString*)myId
 {
-    self.myParticipantId = notification.userInfo[OOVOOParticipantIdKey];
+    self.myParticipantId = myId;
     [ooVooController sharedController].cameraEnabled = YES;
     [ooVooController sharedController].microphoneEnabled = YES;
     [ooVooController sharedController].speakerEnabled = YES;
@@ -151,35 +186,29 @@
     
 }
 
-- (void)conferenceDidFail:(NSNotification*)notification
+- (void)conferenceDidFail
 {
     self.inConference = NO;
     self.joinButton.enabled = YES;
     [self.joinButton setTitle:NSLocalizedString(@"Join",@"") forState:UIControlStateNormal];
 }
 
-- (void)conferenceDidEnd:(NSNotification*)notification
+- (void)conferenceDidEnd
 {
-    
     self.inConference = NO;
     self.joinButton.enabled = YES;
     [self.joinButton setTitle:NSLocalizedString(@"Join",@"") forState:UIControlStateNormal];
 }
 
-- (void)participantStateChanged:(NSNotification*)notification
+- (void)participantStateChanged:(ooVooVideoState)state changedParticipantId:(NSString*)changedParticipantId
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        
-        NSDictionary *userInfo = notification.userInfo;
-        NSString *changedParticipantID = userInfo[OOVOOParticipantIdKey];
-        ooVooVideoState state = (ooVooVideoState)[userInfo[OOVOOParticipantStateKey] integerValue];
-        
         switch (state) {
             case ooVooVideoUninitialized:
                 
                 break;
             case ooVooVideoOn:
-                [self.participantVideoView associateToID:changedParticipantID];
+                [self.participantVideoView associateToID:changedParticipantId];
                 [self.participantVideoView showVideo:YES];
                 self.participantVideoViewOverlay.hidden = YES;
                 
@@ -197,7 +226,7 @@
         
     });
 }
-- (void)videoDidStart:(NSNotification*)notification
+- (void)videoDidStart
 {
     // NSString *participantId = notification.userInfo[OOVOOParticipantIdKey];
     // if([participantId isEqualToString:self.myParticipantId])
@@ -211,7 +240,7 @@
     // }
 }
 
-- (void)videoDidStop:(NSNotification*)notification
+- (void)videoDidStop
 {
     // NSString *participantId = notification.userInfo[OOVOOParticipantIdKey];
     // if([participantId isEqualToString:self.myParticipantId])
@@ -224,18 +253,10 @@
 }
 
 
-
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
 - (IBAction)joinLeaveConference:(id)sender
 {
     if (!self.inConference) {
-        [[ooVooController sharedController] joinConference:@"YourConferenceID" applicationToken:@"MDAxMDAxAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA71BEeMIikqDr26/fzo4oHXZCBM+7/ENSV2i/aq6v/3XKC9pUpDcgtXzhgljwrYopKsEQD+H/ZiMy+0r7X8RMbuL3Mhwx+JwpAdR1brBSnqg==" applicationId:@"12349983350802" participantInfo:@"Shani"];
+        [self joinConference];
         self.joinButton.enabled = NO;
     }
     else
@@ -246,24 +267,27 @@
     }
 }
 
+- (void)joinConference
+{
+    [self startListeningToSessionEvents];
+    [self startListeningToVideoEvents];
+    [[ooVooController sharedController] joinConference:@"YourConferenceID"  participantId:[[SHUser currentUser] objectId] participantInfo:[[SHUser currentUser] username]];
+}
+
 
 
 #pragma mark delegate methods
 
 
 
-- (void)participantDidLeave:(NSNotification*)notification
+- (void)participantDidLeave:(NSString*)changedParticipantId
 {
-    NSLog(@"notification = %@",notification);
+    self.joinButton.enabled = NO;
 }
 
-- (void)participantDidJoin:(NSNotification*)notification
+- (void)participantDidJoin:(NSString*)changedParticipantId
 {
-    NSLog(@"notification = %@",notification);
-    NSDictionary *userInfo = notification.userInfo;
-    NSString *changedParticipantID = userInfo[OOVOOParticipantIdKey];
-    [[ooVooController sharedController] receiveParticipantVideo:YES forParticipantID:changedParticipantID];
-    
+    [[ooVooController sharedController] receiveParticipantVideo:YES forParticipantID:changedParticipantId];
 }
 
 
@@ -303,8 +327,5 @@
 
 #pragma mark dealloc
 
-- (void)dealloc
-{
-    [self removeObservers];
-}
+
 @end

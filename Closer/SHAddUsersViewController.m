@@ -7,6 +7,7 @@
 //
 
 #import "SHAddUsersViewController.h"
+#import "SHUser.h"
 
 @interface SHAddUsersViewController ()<UISearchBarDelegate>
 @property (nonatomic,weak) IBOutlet UISearchBar *searchBar;
@@ -95,7 +96,7 @@
     }
     self.isSearching = YES;
     [searchBar resignFirstResponder];
-    PFQuery *query = [PFUser query];
+    PFQuery *query = [SHUser query];
     query.cachePolicy =  kPFCachePolicyCacheElseNetwork;
     query.maxCacheAge = 360;
     [query whereKey:@"username" containsString:searchBar.text];
@@ -105,7 +106,7 @@
        }
        else
        {
-           NSLog(@"error = %@", error);
+           DDLogError(@"error = %@", error);
        }
        dispatch_async(dispatch_get_main_queue(), ^{
            [self.tableView reloadData];

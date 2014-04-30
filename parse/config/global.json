@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "Closer": {
+            "applicationId": "gXCpOQmQqCCzCJtHhx3Z3fdHN8qpH5424KKJ8qh8", 
+            "masterKey": "XfQfIxKhYJTX8NTUDpthcJcymI2Y5NMEkoE2WnK9"
+        }, 
+        "_default": {
+            "link": "Closer"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.16"
+    }
+}

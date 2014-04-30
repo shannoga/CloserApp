@@ -7,13 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-@class SHControllerContext, SHGameSelectionViewController;
+#import "SHMenuProtocol.h"
+
+@class SHControllerContext, SHGameSelectionViewController,SHBaseViewController;
 @interface SHGamesMenuController : NSObject
 @property (nonatomic,strong) SHControllerContext *context;
-@property (nonatomic,strong) SHGameSelectionViewController *menuViewController;
+@property (nonatomic,strong) SHBaseViewController <SHMenuProtocol> *menuViewController;
 
 - (void)adminDidMoveToMainMenuAtIndex:(NSInteger)index;
 - (void)adminDidSelectMainGameAtIndex:(NSInteger)index;
 - (void)adminDidGoBackToMainMenu;
 - (void)adminDidSelectSubGameAtIndex:(NSInteger)subGameIndex;
+- (void)prepareForLogout;
 @end

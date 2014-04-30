@@ -89,6 +89,7 @@
     gameDescriptionViewController.imageFile = [SHGamesProvider titleForMainGame:index localized:NO];
     gameDescriptionViewController.titleText = [SHGamesProvider titleForMainGame:index localized:YES];
     gameDescriptionViewController.pageIndex = index;
+    gameDescriptionViewController.mainGame = index;
     gameDescriptionViewController.controllerContext = self.controllerContext;
     
     return gameDescriptionViewController;
@@ -165,7 +166,8 @@
 }
 
 
-#pragma mark -Admin actions
+#pragma mark -SHMenuProtocol
+
 - (void)adminDidNavigateToPageAtIndex:(NSInteger)index
 {
     [self goToPageAtIndex:index completion:nil];

@@ -15,16 +15,17 @@
 #import <MBProgressHUD.h>
 #import <UIActionSheet+Blocks.h>
 #import "SHPuserController.h"
+#import "SHUser.h"
+#import "SHMessagesCoordinator.h"
+#import "SHPubNubController.h"
+#import <Crashlytics/Crashlytics.h>
 
-@interface SHUserProfileViewController ()<SHMainViewControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
+@interface SHUserProfileViewController ()<SHMainViewControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource, SHUserProfileControllerDelegate>
 @property (nonatomic,weak) IBOutlet UILabel *activeGroupLabel;
 @property (nonatomic,weak) IBOutlet PFImageView *avatarImageView;
 @property (nonatomic,weak) IBOutlet UIActivityIndicatorView *SDKStateIndicatorView;
 @property (nonatomic,weak) IBOutlet UICollectionView *groupFriendsView;
-
-@property (nonatomic,strong) NSArray *friends;
-@property (nonatomic,strong)  SHUserProfileController *profileController;
-
+@property (nonatomic,copy) NSString *sessionSegueuId;
 - (IBAction)logout:(id)sender;
 - (IBAction)editAvatar:(id)sender;
 @end
@@ -38,16 +39,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.profileController = [[SHUserProfileController alloc] initWithControllerContext:self.controllerContext];
+    
+    //[[Crashlytics sharedInstance] crash];
 
+    self.controllerContext.userProfileController.delegate = self;
     self.groupFriendsView.backgroundColor = [UIColor clearColor];
     self.avatarImageView.image = [UIImage imageNamed:@"avatar_placeholder"];
     self.groupFriendsView.scrollEnabled = YES;
    
-    [self showHud];
-    [self.profileController activeGroupWithBlock:^(PFObject *group) {
+    //[self showHud];
+    [self.controllerContext.userProfileController activeGroupWithBlock:^(PFObject *group) {
         if (group) {
-            [self.controllerContext.pusherController listenToPusherCahnnel:group.objectId eventName:@"StartGame"];
 
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.activeGroupLabel.text = [PFUser currentUser].username;
@@ -55,20 +57,19 @@
                 self.avatarImageView.file = (PFFile *)group[@"groupImage"];
                 [self.avatarImageView loadInBackground:^(UIImage *image, NSError *error) {
                     if (error) {
-                        NSLog(@"error = %@",error.userInfo);
+                        DDLogError(@"error = %@",error.userInfo);
                     }
                 }];
             });
-            [self.profileController getActiveGroupUsersWithBlock:^(NSArray *users, NSError *error) {
+            [self.controllerContext.userProfileController getActiveGroupUsersWithBlock:^(NSArray *users, NSError *error) {
                 if (users.count) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        self.friends = users;
                         
                         [self.groupFriendsView reloadData];
                     });
                     
                 }
-                [self hideHud];
+               // [self hideHud];
 
             }];
         }
@@ -79,6 +80,7 @@
     self.avatarImageView.layer.borderWidth = 3;
     self.avatarImageView.layer.masksToBounds = YES;
     
+    self.sessionSegueuId = [[SHMessagesCoordinator sharedCoordinator] playerMode] == PlayerModeAdult ? @"startAdultSession" : @"startKidSession";
 
     
 //    NSString *email = [PFUser currentUser].email;
@@ -110,7 +112,7 @@
 #pragma mark - UICollectionView Datasource
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    return self.friends.count + 1;
+    return self.controllerContext.userProfileController.activeUsers.count + 1;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
@@ -121,19 +123,19 @@
     SHCollectionViewFriendCell *cell = (SHCollectionViewFriendCell*)[cv dequeueReusableCellWithReuseIdentifier:@"FriendCell" forIndexPath:indexPath];
     cell.backgroundColor = [UIColor clearColor];
     
-    if (indexPath.row != self.friends.count) {
-        PFUser *user = [self.friends objectAtIndex:indexPath.row];
+    if (indexPath.row != self.controllerContext.userProfileController.activeUsers.count) {
+        SHUser *user = [self.controllerContext.userProfileController.activeUsers objectAtIndex:indexPath.row];
         cell.friendImageView.image = [UIImage imageNamed:@""]; // placeholder image
         cell.friendImageView.file = (PFFile *)user[@"userImage"]; // remote image
+        cell.friendImageView.alpha = user.online ? 1 : .5;
         [cell.friendImageView loadInBackground:^(UIImage *image, NSError *error) {
-            NSLog(@"");
         }];
         cell.friendNameLabel.text = user.username;
     }
     else
     {
+        cell.friendImageView.alpha = 1;
         cell.friendNameLabel.text = NSLocalizedString(@"ADD",nil);
-
     }
     return cell;
 }
@@ -142,46 +144,63 @@
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == self.friends.count)
+    if (indexPath.row == self.controllerContext.userProfileController.activeUsers.count)
     {
         [self performSegueWithIdentifier:@"addUsersSegue" sender:self];
     }
     else
     {
-        PFUser *user = [self.friends objectAtIndex:indexPath.row];
-//        // Find users near a given location
-//        //PFQuery *userQuery = [PFUser query];
-//      //  [userQuery whereKey:@"location"
-//         //      nearGeoPoint:stadiumLocation
-//             //   withinMiles:[NSNumber numberWithInt:1]]
-//        
-//        // Find devices associated with these users
-//        PFQuery *pushQuery = [PFInstallation query];
-//        [pushQuery whereKey:@"user" equalTo:user];
-//        
-//        // Send push notification to query
-//        PFPush *push = [[PFPush alloc] init];
-//       // [push setData:<#(NSDictionary *)#>]
-//        [push setQuery:pushQuery]; // Set our Installation query
-//        [push setMessage:@"Free hotdogs at the Parse concession stand!"];
-//        [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//            if(error)
-//            {
-//                NSLog(@"error = %@", error.userInfo);
-//            }
-//            else if (succeeded)
-//            {
-//                NSLog(@"push sent to : %@", user.username);
-//
-//            }
-//        }];
-        [self.controllerContext.pusherController sendEventToChannelWithData:@{@"sender":[PFUser currentUser].objectId,@"reciver":user.objectId}];
-        [self performSegueWithIdentifier:@"startSession" sender:self];
+        SHUser *user = [self.controllerContext.userProfileController.activeUsers objectAtIndex:indexPath.row];
+        [self showHud];
+        [self.controllerContext.pubnubController callUserWithObjectId:user.objectId WithCallResultHandler:^(SHCallResult callResult, NSError *error) {
+            switch (callResult) {
+                case SHCallResultAnswered:
+                        [self performSegueWithIdentifier:self.sessionSegueuId sender:self];
+                    break;
+                case SHCallResultRejected:
+                    //close call and present a rejected message
+                    break;
+                case SHCallResultTimedOut:
+                    //close call and present a time out message
+                    break;
+                case SHCallResultUnknown:
+                    //close call and present a general error
+                    break;
+                    
+                default:
+                    break;
+            }
+            [self hideHud];
+        }];
+
+       
     }
 }
+
+
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
 }
 
+#pragma mark – SHUserProfileControllerDelegate
+- (void)activeUsersDidUpdatePresence
+{
+    [self.groupFriendsView reloadData];
+}
+
+- (void)userDidCall:(NSString *)userId answerHandler:(void (^)(SHCallResult))callResult
+{
+    RIButtonItem *answerItem = [RIButtonItem itemWithLabel:NSLocalizedString(@"Play",nil) action:^{
+        [self performSegueWithIdentifier:self.sessionSegueuId sender:self];
+        callResult(SHCallResultAnswered);
+    }];
+    
+    RIButtonItem *rejectItem = [RIButtonItem itemWithLabel:NSLocalizedString(@"Reject",nil) action:^{
+        callResult(SHCallResultRejected);
+    }];
+    [[[UIAlertView alloc] initWithTitle:@"call" message:NSLocalizedString(@"wants to play with you",nil) cancelButtonItem:nil otherButtonItems:answerItem,rejectItem, nil] show];
+    
+}
 
 #pragma mark – UICollectionViewDelegateFlowLayout
 
@@ -209,7 +228,7 @@
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    if ([identifier isEqualToString:@"startSession"]) {
+    if ([identifier isEqualToString:self.sessionSegueuId]) {
         BOOL isOoVooREady = [self.controllerContext.sdkController oovooSDKLoggedIn];
         return isOoVooREady;
 
@@ -219,14 +238,15 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"startSession"]) {
+    if ([segue.identifier isEqualToString:self.sessionSegueuId]) {
         BOOL isOoVooReady = [self.controllerContext.sdkController oovooSDKLoggedIn];
         if (isOoVooReady) {
             [(SHMainViewController*)segue.destinationViewController setDelegate:self];
+            [(SHMainViewController*)segue.destinationViewController setControllerContext:self.controllerContext];
         }
         else
         {
-            NSLog(@"should retry init oovoo");
+            DDLogWarn(@"should retry init oovoo");
         }
     }
 }
@@ -294,10 +314,12 @@
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     self.avatarImageView.image = chosenImage;
-    [self.profileController updateGroupImage:chosenImage];
+    [self.controllerContext.userProfileController updateGroupImage:chosenImage];
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
+
+
 
 
 @end

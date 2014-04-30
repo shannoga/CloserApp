@@ -24,7 +24,7 @@
 
 - (void)toggleControllButtons
 {
-    BOOL shouldHideAdultControls =  ![[SHMessagesCoordinator sharedCoordinator] playerIsAdmin];
+    BOOL shouldHideAdultControls = [[SHMessagesCoordinator sharedCoordinator] playerMode] == PlayerModeKid;
     self.nextButton.hidden = self.prevButton.hidden = shouldHideAdultControls;
     self.instructionsLabel.hidden = shouldHideAdultControls;
 }
@@ -40,7 +40,6 @@
     {
         self.gameDataSource= self.controllerContext.gamesController.dataSource;
     }
-    NSLog(@"self.gameDataSource = %@",self.gameDataSource);
     [self toggleControllButtons];
 
 	// Do any additional setup after loading the view.

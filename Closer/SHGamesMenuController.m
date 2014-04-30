@@ -20,7 +20,7 @@
 {
     self = [super init];
     if (self) {
-        _playerIsAdmin = [[SHMessagesCoordinator sharedCoordinator] playerIsAdmin];
+        _playerIsAdmin = [[SHMessagesCoordinator sharedCoordinator] playerMode] == PlayerModeAdult;
         if (!_playerIsAdmin) {
             [self startLiteningToMenuUpdates];
         }
@@ -110,6 +110,12 @@
         [self.menuViewController adminDidSelectSubGameAtIndex:subGameIndex];
     }
 }
+
+- (void)prepareForLogout
+{
+#warning Impliment
+}
+
 
 
 @end

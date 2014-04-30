@@ -48,7 +48,6 @@
 
 - (void)conferenceDidFail:(NSNotification*)notification
 {
-  //  NSLog(@"ontif = %@",notification);
    // [self.delegate conferenceCreated:NO error:nil];
 
 }

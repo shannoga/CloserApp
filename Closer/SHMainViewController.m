@@ -8,7 +8,8 @@
 
 #import "SHMainViewController.h"
 #import "SHLoginScreenViewController.h"
-#import "SHGameSelectionViewController.h"
+#import "SHKidMenuViewController.h"
+#import "SHVideoConferenceViewController.h"
 #import "UIActionSheet+Blocks.h"
 @interface SHMainViewController ()
 - (IBAction)exitGame:(id)sender;
@@ -37,14 +38,16 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSLog(@"segue = %@",segue);
     if ([segue.identifier isEqualToString:@"MenuEmbed"]) {
         UINavigationController *navController = segue.destinationViewController;
-        SHGameSelectionViewController *menuController = (SHGameSelectionViewController *)navController.viewControllers[0];
+        SHKidMenuViewController *menuController = (SHKidMenuViewController *)navController.viewControllers[0];
         self.controllerContext.menuController.menuViewController = menuController;
         menuController.controllerContext = self.controllerContext;
-        
-        NSLog(@"menu contorller : %@",navController.viewControllers[0]);
+    }
+    else if ([segue.identifier isEqualToString:@"VideoEmbed"])
+    {
+        SHVideoConferenceViewController *videoController = (SHVideoConferenceViewController *)segue.destinationViewController;
+        videoController.controllerContext = self.controllerContext;
     }
 }
 
