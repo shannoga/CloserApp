@@ -45,13 +45,13 @@
 
 - (void)adminSelectedMainGame
 {
-    NSLog(@"admin selected game - %@",self.titleText);
+    DDLogInfo(@"admin selected game - %@",self.titleText);
     [self performSegueWithIdentifier:@"gameMenuSegue" sender:self];
 }
 
 - (IBAction)gameTapped:(id)sender
 {
-    NSLog(@"user selected game - %@",self.titleText);
+    DDLogInfo(@"user selected game - %@",self.titleText);
     [self.controllerContext.menuController adminDidSelectMainGameAtIndex:self.mainGame];
     [self performSegueWithIdentifier:@"gameMenuSegue" sender:self];
 }

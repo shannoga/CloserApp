@@ -18,11 +18,22 @@
     #import "SHHelpers.h"
     #import <Parse/Parse.h>
     #import "SHGamesProvider.h"
+    #import "DDLog.h"
+    #import "PNImports.h"
+    #import <Reachability.h>
 
 #endif
 #import <UIActionSheet+Blocks.h>
 #import <UIAlertView+Blocks.h>
 #import <MBProgressHUD.h>
 #import <Pusher/Pusher.h>
+#import <Helpshift/Helpshift.h>
 
 #define OOVOOParticipantIdKey @"OOVOOParticipantIdKey"
+
+
+#ifdef DEBUG
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+#else
+static const int ddLogLevel = LOG_LEVEL_ERROR;
+#endif

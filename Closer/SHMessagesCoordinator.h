@@ -77,6 +77,7 @@ typedef NS_ENUM(NSUInteger, FeedbackMessage)
 
 typedef NS_ENUM(NSUInteger, MessageType)
 {
+    MessageTypeNone = 0,
     MessageTypeMenu = 1,
     MessegeTypeProgress = 2,
     MessageTypeFeedback = 3,
@@ -94,7 +95,6 @@ typedef void(^SHCoordinatorProgressHandler)(ProgressMessage message, NSUInteger 
 typedef void(^SHCoordinatorFeedbackHandler)(FeedbackMessage message);
 
 @property (nonatomic) PlayerMode playerMode;
-@property (nonatomic) BOOL playerIsAdmin;
 
 - (void)sendMessageOfType:(MessageType)messegeType message:(NSUInteger)message index:(NSInteger)index;
 

@@ -35,11 +35,6 @@ NSString *const kmenuItemIndex = @"menuItemIndex";
 }
 
 
-- (BOOL)playerIsAdmin
-{
-    return self.playerMode == PlayerModeAdult;
-}
-
 - (void)sendMenuProgressMessageToChild:(MenuMessage)messegeType stepIndex:(NSUInteger)stepIndex
 {
     
@@ -85,11 +80,11 @@ NSString *const kmenuItemIndex = @"menuItemIndex";
 {
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:messageDic
-                                                       options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
+                                                       options:NSJSONWritingPrettyPrinted
                                                          error:&error];
     
     if (! jsonData) {
-        NSLog(@"Got an error: %@", error);
+        DDLogError(@"Got an error: %@", error);
         return nil;
     }
 
@@ -109,13 +104,12 @@ NSString *const kmenuItemIndex = @"menuItemIndex";
     if ([[ooVooController sharedController] inCallMessagesPermitted] && [[ooVooController sharedController] cameraEnabled] ) {
         NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
          [[ooVooController sharedController] sendMessage:data toParticipantID:nil];
-        NSLog(@"sent message = %@",message);
+        DDLogDebug(@"message sent = %@",message);
     }
-    NSLog(@"can not send message = %@",message);
-//#warning testing only
-   // NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
-  //  [self parseTestIncomingMessage:data];
-
+    else
+    {
+        DDLogError(@"can not send message = %@",message);
+    }
 }
 
 #pragma  mark - parseIncomingMessage
@@ -125,7 +119,7 @@ NSString *const kmenuItemIndex = @"menuItemIndex";
     NSData *messageData = notification.userInfo[OOVOOParticipantInfoKey];
     NSError *error = nil;
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:messageData options:kNilOptions error:&error];
-    NSLog(@"dic = %@",dictionary);
+    DDLogDebug(@"incoming messege = %@",dictionary);
     [self handleIncomingMessageDic:dictionary];
 }
 
@@ -133,7 +127,7 @@ NSString *const kmenuItemIndex = @"menuItemIndex";
 {
     NSError *error = nil;
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:messageData options:kNilOptions error:&error];
-    NSLog(@"dic = %@",dictionary);
+    DDLogInfo(@"dic = %@",dictionary);
     [self handleIncomingMessageDic:dictionary];
 }
 
@@ -161,6 +155,9 @@ NSString *const kmenuItemIndex = @"menuItemIndex";
         case MessageTypeFeedback:
             if (!self.feedbackHandler) return;
             self.feedbackHandler(message);
+            break;
+            
+        case MessageTypeNone:
             break;
     }
 }

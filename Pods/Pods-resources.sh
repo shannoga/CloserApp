@@ -42,6 +42,26 @@ install_resource()
   esac
 }
 install_resource "Facebook-iOS-SDK/src/FBUserSettingsViewResources.bundle"
+install_resource "Helpshift/helpshift-ios-4.3.1/HSResources/HS-background-tile.png"
+install_resource "Helpshift/helpshift-ios-4.3.1/HSResources/HS-background-tile@2x.png"
+install_resource "Helpshift/helpshift-ios-4.3.1/HSResources/HS-no-connection.png"
+install_resource "Helpshift/helpshift-ios-4.3.1/HSResources/HS-no-connection@2x.png"
+install_resource "Helpshift/helpshift-ios-4.3.1/HSResources/HS-powered-by-logo.png"
+install_resource "Helpshift/helpshift-ios-4.3.1/HSResources/HS-powered-by-logo@2x.png"
+install_resource "Helpshift/helpshift-ios-4.3.1/HSResources/HS-screenshot-error.png"
+install_resource "Helpshift/helpshift-ios-4.3.1/HSResources/HS-screenshot-error@2x.png"
+install_resource "Helpshift/helpshift-ios-4.3.1/HSResources/HS-section-header.png"
+install_resource "Helpshift/helpshift-ios-4.3.1/HSResources/HS-section-header@2x.png"
+install_resource "Helpshift/helpshift-ios-4.3.1/HSResources/HSChatBubbleBlue.png"
+install_resource "Helpshift/helpshift-ios-4.3.1/HSResources/HSChatBubbleBlue@2x.png"
+install_resource "Helpshift/helpshift-ios-4.3.1/HSResources/HSChatBubbleWhite.png"
+install_resource "Helpshift/helpshift-ios-4.3.1/HSResources/HSChatBubbleWhite@2x.png"
+install_resource "Helpshift/helpshift-ios-4.3.1/HSResources/HSConfirmBox.png"
+install_resource "Helpshift/helpshift-ios-4.3.1/HSResources/HSConfirmBox@2x.png"
+install_resource "Helpshift/helpshift-ios-4.3.1/HSResources/HSTutorial.png"
+install_resource "Helpshift/helpshift-ios-4.3.1/HSResources/HSTutorial@2x.png"
+install_resource "Helpshift/helpshift-ios-4.3.1/HSResources/HSTutorialiPad.png"
+install_resource "Helpshift/helpshift-ios-4.3.1/HSResources/HSTutorialiPad@2x.png"
 
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 if [[ "${ACTION}" == "install" ]]; then

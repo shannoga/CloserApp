@@ -128,14 +128,14 @@
             [self presentAlertWithError:[error localizedDescription]];
         }
         if (!user) {
-            NSLog(@"Uh oh. The user cancelled the Facebook login.");
+            DDLogInfo(@"Uh oh. The user cancelled the Facebook login.");
         } else if (user.isNew) {
-            NSLog(@"User signed up and logged in through Facebook!");
+            DDLogInfo(@"User signed up and logged in through Facebook!");
             
             [self userLoggedIn];
             
         } else {
-            NSLog(@"User logged in through Facebook!");
+            DDLogInfo(@"User logged in through Facebook!");
             [self userLoggedIn];
         }
     }];
@@ -148,14 +148,14 @@
             [self presentAlertWithError:[error localizedDescription]];
         }
         if (!user) {
-            NSLog(@"Uh oh. The user cancelled the Twitter login.");
+            DDLogInfo(@"Uh oh. The user cancelled the Twitter login.");
             return;
         } else if (user.isNew) {
-            NSLog(@"User signed up and logged in with Twitter!");
+            DDLogInfo(@"User signed up and logged in with Twitter!");
             [self userLoggedIn];
             
         } else {
-            NSLog(@"User logged in with Twitter!");
+            DDLogInfo(@"User logged in with Twitter!");
             [self userLoggedIn];
             
         }

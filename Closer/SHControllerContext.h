@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SHGamesMenuController.h"
 
-@class SHGamesController, SHOoVooSDKController, SHPuserController;
+@class SHGamesController, SHOoVooSDKController, SHPusherControllerA, SHUserProfileController, SHPubNubController, SHPuserController;
 
 @interface SHControllerContext : NSObject
 @property (nonatomic,strong) SHGamesMenuController *menuController;
@@ -17,5 +17,9 @@
 @property (nonatomic,strong) SHOoVooSDKController *sdkController;
 @property (nonatomic,strong) SHPuserController *pusherController;
 
+@property (nonatomic,strong) SHPusherControllerA *pusherControllerNew;
+@property (nonatomic,strong) SHUserProfileController *userProfileController;
+@property (nonatomic,strong) SHPubNubController *pubnubController;
 - (void)setUpControllers;
+- (void)prepareForLogout;
 @end

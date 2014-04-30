@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		392C02F418C207340064391F /* SHControllerContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 392C02F318C207340064391F /* SHControllerContext.m */; };
 		392C02FD18C20C440064391F /* SHBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 392C02FC18C20C440064391F /* SHBaseViewController.m */; };
+		39350C5F18E881EB000ED028 /* SHUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 39350C5E18E881EB000ED028 /* SHUser.m */; };
 		393E854A18A65A9500E37868 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393E854918A65A9500E37868 /* AVFoundation.framework */; };
 		39450CB818DB201400AD4B48 /* SHSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39450CB718DB201400AD4B48 /* SHSignUpViewController.m */; };
 		39450CBB18DB6EBE00AD4B48 /* SHOnBoardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39450CBA18DB6EBE00AD4B48 /* SHOnBoardingViewController.m */; };
@@ -24,9 +25,8 @@
 		395F3A7A18E3F97600FE9AEF /* avatar_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 395F3A7818E3F97600FE9AEF /* avatar_placeholder.png */; };
 		395F3A7D18E4A5C900FE9AEF /* SHAddUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395F3A7C18E4A5C900FE9AEF /* SHAddUsersViewController.m */; };
 		3960A92C18E5DB6300D2E2EA /* SHBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3960A92B18E5DB6300D2E2EA /* SHBaseTableViewController.m */; };
-		3960A92F18E6CA0A00D2E2EA /* SHPuserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3960A92E18E6CA0A00D2E2EA /* SHPuserController.m */; };
-		3960A93218E6E91A00D2E2EA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3960A93118E6E91A00D2E2EA /* Reachability.m */; };
 		3960D5A918BD36B80056D295 /* SHGameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3960D5A818BD36B80056D295 /* SHGameObject.m */; };
+		3966FCF218F5CAF000A9A6F3 /* ClientDisconnectionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3966FCF118F5CAF000A9A6F3 /* ClientDisconnectionHandler.m */; };
 		396727D318DB7D790022BE01 /* stub.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 396727D218DB7D790022BE01 /* stub.jpg */; };
 		396727D718DB9A750022BE01 /* SHAppThemeClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = 396727D618DB9A750022BE01 /* SHAppThemeClasses.m */; };
 		396D74D718A619E0000E2BB4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396D74D618A619E0000E2BB4 /* Foundation.framework */; };
@@ -72,6 +72,7 @@
 		39A71EE818AC9B9400FB338B /* SHGamesDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 39A71EE718AC9B9400FB338B /* SHGamesDataSource.m */; };
 		39A71EEB18AC9C0900FB338B /* SHGamesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39A71EEA18AC9C0900FB338B /* SHGamesController.m */; };
 		39B58A1D18A66364001F3601 /* SHNotificationsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B58A1C18A66364001F3601 /* SHNotificationsController.m */; };
+		39BA7BF019085F150063F66F /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39BA7BEF19085F150063F66F /* Crashlytics.framework */; };
 		39BEC16B18E14F93001A96BE /* SHCollectionViewFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39BEC16A18E14F93001A96BE /* SHCollectionViewFriendCell.m */; };
 		39C522C018DE2D1500E6430B /* SHUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C522BF18DE2D1500E6430B /* SHUserProfileViewController.m */; };
 		39C54BFD18AA75CC006D56FE /* 138-Pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C54BFB18AA75CC006D56FE /* 138-Pause.png */; };
@@ -91,6 +92,9 @@
 		39CEA47218DF80C500985E9A /* SHFindGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CEA47118DF80C500985E9A /* SHFindGroupsViewController.m */; };
 		39E414F618E0DAD1003DEC86 /* SHUserProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E414F518E0DAD1003DEC86 /* SHUserProfileController.m */; };
 		39E6542918AA5A7200AAFEB5 /* SHHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E6542818AA5A7200AAFEB5 /* SHHelpers.m */; };
+		39ECD65218EFE14F00D0510B /* SHKidMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39ECD65118EFE14F00D0510B /* SHKidMenuViewController.m */; };
+		39ECD65518EFEC7500D0510B /* SHMainKidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39ECD65418EFEC7500D0510B /* SHMainKidViewController.m */; };
+		39ECD65B18F4A03400D0510B /* SHPubNubController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39ECD65A18F4A03400D0510B /* SHPubNubController.m */; };
 		39F218B518BFBE9A00938E2D /* SHGameContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F218B418BFBE9A00938E2D /* SHGameContext.m */; };
 		39F218BD18C1246E00938E2D /* GamesMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39F218BC18C1246E00938E2D /* GamesMenu.plist */; };
 		39F218C018C1AE1400938E2D /* SHGamesProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F218BF18C1AE1400938E2D /* SHGamesProvider.m */; };
@@ -116,6 +120,8 @@
 		392C02F318C207340064391F /* SHControllerContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHControllerContext.m; sourceTree = "<group>"; };
 		392C02FB18C20C440064391F /* SHBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHBaseViewController.h; sourceTree = "<group>"; };
 		392C02FC18C20C440064391F /* SHBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHBaseViewController.m; sourceTree = "<group>"; };
+		39350C5D18E881EB000ED028 /* SHUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHUser.h; sourceTree = "<group>"; };
+		39350C5E18E881EB000ED028 /* SHUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHUser.m; sourceTree = "<group>"; };
 		393E854918A65A9500E37868 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		39450CB618DB201400AD4B48 /* SHSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHSignUpViewController.h; sourceTree = "<group>"; };
 		39450CB718DB201400AD4B48 /* SHSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHSignUpViewController.m; sourceTree = "<group>"; };
@@ -139,10 +145,10 @@
 		3960A92B18E5DB6300D2E2EA /* SHBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHBaseTableViewController.m; sourceTree = "<group>"; };
 		3960A92D18E6CA0A00D2E2EA /* SHPuserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPuserController.h; sourceTree = "<group>"; };
 		3960A92E18E6CA0A00D2E2EA /* SHPuserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPuserController.m; sourceTree = "<group>"; };
-		3960A93018E6E91A00D2E2EA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		3960A93118E6E91A00D2E2EA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		3960D5A718BD36B80056D295 /* SHGameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHGameObject.h; sourceTree = "<group>"; };
 		3960D5A818BD36B80056D295 /* SHGameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHGameObject.m; sourceTree = "<group>"; };
+		3966FCF018F5CAF000A9A6F3 /* ClientDisconnectionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientDisconnectionHandler.h; sourceTree = "<group>"; };
+		3966FCF118F5CAF000A9A6F3 /* ClientDisconnectionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientDisconnectionHandler.m; sourceTree = "<group>"; };
 		396727D218DB7D790022BE01 /* stub.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = stub.jpg; sourceTree = "<group>"; };
 		396727D518DB9A750022BE01 /* SHAppThemeClasses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHAppThemeClasses.h; sourceTree = "<group>"; };
 		396727D618DB9A750022BE01 /* SHAppThemeClasses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHAppThemeClasses.m; sourceTree = "<group>"; };
@@ -205,6 +211,7 @@
 		39A71EEA18AC9C0900FB338B /* SHGamesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHGamesController.m; sourceTree = "<group>"; };
 		39B58A1B18A66364001F3601 /* SHNotificationsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHNotificationsController.h; sourceTree = "<group>"; };
 		39B58A1C18A66364001F3601 /* SHNotificationsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHNotificationsController.m; sourceTree = "<group>"; };
+		39BA7BEF19085F150063F66F /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		39BEC16918E14F93001A96BE /* SHCollectionViewFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCollectionViewFriendCell.h; sourceTree = "<group>"; };
 		39BEC16A18E14F93001A96BE /* SHCollectionViewFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCollectionViewFriendCell.m; sourceTree = "<group>"; };
 		39C522BE18DE2D1500E6430B /* SHUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHUserProfileViewController.h; sourceTree = "<group>"; };
@@ -234,6 +241,13 @@
 		39E414F518E0DAD1003DEC86 /* SHUserProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHUserProfileController.m; sourceTree = "<group>"; };
 		39E6542718AA5A7200AAFEB5 /* SHHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHHelpers.h; sourceTree = "<group>"; };
 		39E6542818AA5A7200AAFEB5 /* SHHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHHelpers.m; sourceTree = "<group>"; };
+		39ECD65018EFE14F00D0510B /* SHKidMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKidMenuViewController.h; sourceTree = "<group>"; };
+		39ECD65118EFE14F00D0510B /* SHKidMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHKidMenuViewController.m; sourceTree = "<group>"; };
+		39ECD65318EFEC6400D0510B /* SHMainKidViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHMainKidViewController.h; sourceTree = "<group>"; };
+		39ECD65418EFEC7500D0510B /* SHMainKidViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHMainKidViewController.m; sourceTree = "<group>"; };
+		39ECD65618F0283000D0510B /* SHMenuProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHMenuProtocol.h; sourceTree = "<group>"; };
+		39ECD65918F4A03400D0510B /* SHPubNubController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPubNubController.h; sourceTree = "<group>"; };
+		39ECD65A18F4A03400D0510B /* SHPubNubController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPubNubController.m; sourceTree = "<group>"; };
 		39F218B318BFBE9A00938E2D /* SHGameContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHGameContext.h; sourceTree = "<group>"; };
 		39F218B418BFBE9A00938E2D /* SHGameContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHGameContext.m; sourceTree = "<group>"; };
 		39F218BC18C1246E00938E2D /* GamesMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GamesMenu.plist; sourceTree = "<group>"; };
@@ -261,6 +275,7 @@
 				396D752318A658CC000E2BB4 /* libz.dylib in Frameworks */,
 				396D752118A658C4000E2BB4 /* libc++.dylib in Frameworks */,
 				395605CE18B411DB00DBD46B /* Parse.framework in Frameworks */,
+				39BA7BF019085F150063F66F /* Crashlytics.framework in Frameworks */,
 				396D751318A6581A000E2BB4 /* SystemConfiguration.framework in Frameworks */,
 				396D751B18A65874000E2BB4 /* CoreTelephony.framework in Frameworks */,
 				396D751F18A658B4000E2BB4 /* QuartzCore.framework in Frameworks */,
@@ -308,6 +323,12 @@
 				39CEA46E18DEAE6000985E9A /* SHOoVooSDKController.m */,
 				3960A92D18E6CA0A00D2E2EA /* SHPuserController.h */,
 				3960A92E18E6CA0A00D2E2EA /* SHPuserController.m */,
+				39E414F418E0DAD1003DEC86 /* SHUserProfileController.h */,
+				39E414F518E0DAD1003DEC86 /* SHUserProfileController.m */,
+				39ECD65918F4A03400D0510B /* SHPubNubController.h */,
+				39ECD65A18F4A03400D0510B /* SHPubNubController.m */,
+				3966FCF018F5CAF000A9A6F3 /* ClientDisconnectionHandler.h */,
+				3966FCF118F5CAF000A9A6F3 /* ClientDisconnectionHandler.m */,
 			);
 			name = "Controllers and Coordinators";
 			sourceTree = "<group>";
@@ -323,6 +344,8 @@
 				3960A92B18E5DB6300D2E2EA /* SHBaseTableViewController.m */,
 				39C54C0D18AAA70C006D56FE /* SHMainViewController.h */,
 				39C54C0E18AAA70C006D56FE /* SHMainViewController.m */,
+				39ECD65318EFEC6400D0510B /* SHMainKidViewController.h */,
+				39ECD65418EFEC7500D0510B /* SHMainKidViewController.m */,
 				39C54C1018AAA728006D56FE /* SHGamesViewController.h */,
 				39C54C1118AAA728006D56FE /* SHGamesViewController.m */,
 				39450CB518DB1FD900AD4B48 /* Onboarding */,
@@ -373,6 +396,7 @@
 		396D74D518A619E0000E2BB4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39BA7BEF19085F150063F66F /* Crashlytics.framework */,
 				397E26D118C524AA00D3F8BA /* oovoo.framework */,
 				395605D718B4126D00DBD46B /* StoreKit.framework */,
 				395605D518B4126500DBD46B /* Security.framework */,
@@ -418,8 +442,6 @@
 				396D74DD18A619E0000E2BB4 /* Supporting Files */,
 				396727D518DB9A750022BE01 /* SHAppThemeClasses.h */,
 				396727D618DB9A750022BE01 /* SHAppThemeClasses.m */,
-				3960A93018E6E91A00D2E2EA /* Reachability.h */,
-				3960A93118E6E91A00D2E2EA /* Reachability.m */,
 				395F3A7118E36D6400FE9AEF /* GetGravatar.h */,
 				395F3A7218E36D6400FE9AEF /* GetGravatar.m */,
 			);
@@ -471,11 +493,14 @@
 		39A71E7818AB95DF00FB338B /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				39ECD65618F0283000D0510B /* SHMenuProtocol.h */,
 				39C54C1318AAB28D006D56FE /* SHGameSelectionViewController.h */,
 				39C54C1418AAB28D006D56FE /* SHGameSelectionViewController.m */,
 				39C54C1618AAB580006D56FE /* SHGameDescriptionViewController.h */,
 				39C54C1718AAB580006D56FE /* SHGameDescriptionViewController.m */,
 				39A71E7718AB95A900FB338B /* Sub menu */,
+				39ECD65018EFE14F00D0510B /* SHKidMenuViewController.h */,
+				39ECD65118EFE14F00D0510B /* SHKidMenuViewController.m */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -521,8 +546,6 @@
 		39C522C118DE2D1E00E6430B /* User Profile */ = {
 			isa = PBXGroup;
 			children = (
-				39E414F418E0DAD1003DEC86 /* SHUserProfileController.h */,
-				39E414F518E0DAD1003DEC86 /* SHUserProfileController.m */,
 				39C522BE18DE2D1500E6430B /* SHUserProfileViewController.h */,
 				39C522BF18DE2D1500E6430B /* SHUserProfileViewController.m */,
 				395F3A7B18E4A5C900FE9AEF /* SHAddUsersViewController.h */,
@@ -531,6 +554,8 @@
 				39BEC16A18E14F93001A96BE /* SHCollectionViewFriendCell.m */,
 				39CEA47018DF80C500985E9A /* SHFindGroupsViewController.h */,
 				39CEA47118DF80C500985E9A /* SHFindGroupsViewController.m */,
+				39350C5D18E881EB000ED028 /* SHUser.h */,
+				39350C5E18E881EB000ED028 /* SHUser.m */,
 			);
 			name = "User Profile";
 			sourceTree = "<group>";
@@ -568,6 +593,7 @@
 				396D74D018A619E0000E2BB4 /* Frameworks */,
 				396D74D118A619E0000E2BB4 /* Resources */,
 				945ACD0858F649E7BA74F936 /* Copy Pods Resources */,
+				39BA7BEE19085E610063F66F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -603,7 +629,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = SH;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = shannoga;
 				TargetAttributes = {
 					396D74D218A619E0000E2BB4 = {
@@ -681,6 +707,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		39BA7BEE19085E610063F66F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run b0dd9cdba40063988f614c1b8a29f1ecabab3f51 ff947fa463c722cd0698882d23ccd2cecc263e7bdb10df8e30055e708c5ecb10";
+		};
 		905E19C54BAB4C6AA4C8BDC9 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -719,6 +758,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39450CBB18DB6EBE00AD4B48 /* SHOnBoardingViewController.m in Sources */,
+				39350C5F18E881EB000ED028 /* SHUser.m in Sources */,
 				39A71E7E18ABAAC800FB338B /* SHFourObjectsViewController.m in Sources */,
 				39C54C0F18AAA70C006D56FE /* SHMainViewController.m in Sources */,
 				39CEA47218DF80C500985E9A /* SHFindGroupsViewController.m in Sources */,
@@ -727,6 +767,7 @@
 				39F7B9C718B48766006026AA /* SHLoginScreenViewController.m in Sources */,
 				39A71E8118ABAB1500FB338B /* SHGameViewController.m in Sources */,
 				39A71E8618ABABD400FB338B /* SHGameObjectView.m in Sources */,
+				3966FCF218F5CAF000A9A6F3 /* ClientDisconnectionHandler.m in Sources */,
 				396D74F018A619E0000E2BB4 /* SHVideoConferenceViewController.m in Sources */,
 				395F3A7318E36D6400FE9AEF /* GetGravatar.m in Sources */,
 				39A71EE818AC9B9400FB338B /* SHGamesDataSource.m in Sources */,
@@ -739,7 +780,7 @@
 				39F218C718C1FA7900938E2D /* SHGamesMenuController.m in Sources */,
 				395F3A7D18E4A5C900FE9AEF /* SHAddUsersViewController.m in Sources */,
 				39A71EEB18AC9C0900FB338B /* SHGamesController.m in Sources */,
-				3960A92F18E6CA0A00D2E2EA /* SHPuserController.m in Sources */,
+				39ECD65218EFE14F00D0510B /* SHKidMenuViewController.m in Sources */,
 				39A71E7B18ABAA6E00FB338B /* SHSingleObjectGameViewController.m in Sources */,
 				39450CBE18DB6F1A00AD4B48 /* SHOnboardingSinglePageViewController.m in Sources */,
 				39F218C018C1AE1400938E2D /* SHGamesProvider.m in Sources */,
@@ -747,16 +788,17 @@
 				39C522C018DE2D1500E6430B /* SHUserProfileViewController.m in Sources */,
 				39A71E6F18AB85D900FB338B /* SHGameMenuViewController.m in Sources */,
 				39B58A1D18A66364001F3601 /* SHNotificationsController.m in Sources */,
+				39ECD65518EFEC7500D0510B /* SHMainKidViewController.m in Sources */,
 				39A71E8918ABB50D00FB338B /* SHFParticleView.m in Sources */,
 				39E6542918AA5A7200AAFEB5 /* SHHelpers.m in Sources */,
 				39BEC16B18E14F93001A96BE /* SHCollectionViewFriendCell.m in Sources */,
 				39450CB818DB201400AD4B48 /* SHSignUpViewController.m in Sources */,
 				398AFB2818BB249C0023611C /* SHMessagesCoordinator.m in Sources */,
-				3960A93218E6E91A00D2E2EA /* Reachability.m in Sources */,
 				392C02F418C207340064391F /* SHControllerContext.m in Sources */,
 				396D74E718A619E0000E2BB4 /* SHAppDelegate.m in Sources */,
 				39A71E7218AB8D0E00FB338B /* SHSubGameConnetionViewCell.m in Sources */,
 				39E414F618E0DAD1003DEC86 /* SHUserProfileController.m in Sources */,
+				39ECD65B18F4A03400D0510B /* SHPubNubController.m in Sources */,
 				3960D5A918BD36B80056D295 /* SHGameObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -819,7 +861,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -853,11 +895,12 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"\"$SRCROOT\"/oovoo.framework/Headers",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "66BAB381-3E31-4E38-813E-EA11C18F9EBE";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -865,7 +908,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -893,11 +936,12 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"\"$SRCROOT\"/oovoo.framework/Headers",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PROVISIONING_PROFILE = "66BAB381-3E31-4E38-813E-EA11C18F9EBE";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -913,6 +957,7 @@
 					"$(inherited)",
 					/Users/shannoga/Documents/iOS/Closer,
 					"\"$(SRCROOT)/\"",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Closer/Closer-Prefix.pch";
@@ -940,6 +985,7 @@
 					"$(inherited)",
 					/Users/shannoga/Documents/iOS/Closer,
 					"\"$(SRCROOT)/\"",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Closer/Closer-Prefix.pch";
@@ -958,7 +1004,6 @@
 		396D750C18A619E0000E2BB4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Closer.app/Closer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -982,7 +1027,6 @@
 		396D750D18A619E0000E2BB4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Closer.app/Closer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

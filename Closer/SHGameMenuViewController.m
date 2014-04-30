@@ -72,7 +72,7 @@
 {
     [self.controllerContext.gamesController startNewGame:self.mainGame completion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"user selected sub game - %@",[SHGamesProvider titleForSubGame:self.mainGame atIndex:indexPath.row localized:YES]);
+            DDLogInfo(@"user selected sub game - %@",[SHGamesProvider titleForSubGame:self.mainGame atIndex:indexPath.row localized:YES]);
             [self.controllerContext.menuController adminDidSelectSubGameAtIndex:indexPath.row];
             NSString *segueId = [SHGamesProvider segueNameForMainGame:self.mainGame atIndex:indexPath.row];
             [self performSegueWithIdentifier:segueId sender:self];
@@ -101,7 +101,7 @@
 - (void)adminDidSelectSubGameAtIndex:(NSInteger)index
 {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-    NSLog(@"admin selected sub game - %@",[SHGamesProvider titleForSubGame:self.mainGame atIndex:indexPath.row localized:YES]);
+    DDLogInfo(@"admin selected sub game - %@",[SHGamesProvider titleForSubGame:self.mainGame atIndex:indexPath.row localized:YES]);
     [self.collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionTop];
     NSString *segueId = [SHGamesProvider segueNameForMainGame:self.mainGame atIndex:indexPath.row];
     [self performSegueWithIdentifier:segueId sender:self];

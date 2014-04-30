@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "SHBaseViewController.h"
-@interface SHGameSelectionViewController : SHBaseViewController
-- (void)adminDidNavigateToPageAtIndex:(NSInteger)index;
-- (void)adminDidSelectPageForMainGame:(NSInteger)index;
-- (void)adminDidGoBackToMainMenu;
-- (void)adminDidSelectSubGameAtIndex:(NSInteger)subGameIndex;
+
+@interface SHGameSelectionViewController : SHBaseViewController <SHMenuProtocol>
+
 
 @end

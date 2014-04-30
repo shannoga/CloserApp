@@ -8,17 +8,42 @@
 
 #import <Foundation/Foundation.h>
 #import "SHControllerContext.h"
-@protocol SHPuserControllerDelegate
-- (void)didSubscribeToPresenseChannelWithMembers:(PTPusherChannelMembers*)members;
-- (void)userDidSubscribeWithId:(NSString*)userId;
-- (void)userDidUnSubscribeWithId:(NSString*)userId;
-@end
+#import "SHUser.h"
 
+//typedef  NS_ENUM(NSUInteger, SHCallResult)
+//{
+//    SHCallResultAnswered,
+//    SHCallResultRejected,
+//    SHCallResultTimedOut,
+//    SHCallResultUnknown
+//};
+//
+//typedef  NS_ENUM(NSUInteger, SHEventType)
+//{
+//    SHEventTypeCalling,
+//    SHEventTypePresence,
+//};
+
+
+//@protocol SHPuserControllerDelegate
+//- (void)didSubscribeToPresenseChannelWithMembers:(PTPusherChannelMembers*)members;
+//- (void)userDidSubscribeWithId:(NSString*)userId;
+//- (void)userDidUnSubscribeWithId:(NSString*)userId;
+//- (void)userDidCall:(NSString*)userId answerHandler:(void (^)(SHCallResult callResult))callResult;
+//
+//@end
+//
 @interface SHPuserController : NSObject
-@property (nonatomic,strong) SHControllerContext *context;
-@property (nonatomic,weak) id <SHPuserControllerDelegate> delegate;
-- (void)connectToPuser;
-- (void)disconnectFromPusher;
-- (void)listenToPusherCahnnel:(NSString*)channelName eventName:(NSString*)eventName;
-- (void)sendEventToChannelWithData:(NSDictionary*)data;
+//@property (nonatomic,strong) SHControllerContext *context;
+//@property (nonatomic,weak) id <SHPuserControllerDelegate> delegate;
+//@property (nonatomic) BOOL isConnected;
+//
+//typedef void(^SHCallResultHandler)(SHCallResult callResult, NSError *error);
+//
+//- (void)connectToPuserAndSubscribeToGroupChannel:(NSString*)channelName;
+//- (void)disconnectFromPusher;
+//- (void)sendEventToChannelWithData:(NSDictionary*)data;
+//- (void)prepareForLogout;
+//- (void)callUser:(SHUser*)user WithCallResultHandler:(SHCallResultHandler)callResultHandler;
+
 @end

@@ -7,21 +7,19 @@
 //
 
 #import "SHUserProfileController.h"
-#import "SHPuserController.h"
-@interface SHUserProfileController()<SHPuserControllerDelegate>
-@property (nonatomic, strong) PFObject *activeGroup;
-@property (nonatomic, strong) SHControllerContext *controllerContext;
-@property (nonatomic, strong) NSMutableArray *activeUsers;
+#import "SHPubNubController.h"
+#import "SHUser.h"
+
+@interface SHUserProfileController()<SHPubNubControllerDelegate>
 @end
 
 @implementation SHUserProfileController
 
-- (instancetype)initWithControllerContext:(SHControllerContext*)context
+- (instancetype)init
 {
     self = [super init];
     if (self) {
-        self.controllerContext = context;
-        context.pusherController.delegate = self;
+        _activeUsers = [NSMutableArray array];
     }
     return self;
 }
@@ -30,12 +28,12 @@
 {
     if (!_activeGroup) {
         
-        PFRelation *relation = [[PFUser currentUser] relationforKey:@"groups"];
+        PFRelation *relation = [[SHUser currentUser] relationforKey:@"groups"];
         PFQuery *query = [relation query];
         query.cachePolicy = kPFCachePolicyNetworkElseCache;
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (error) {
-                NSLog(@"error = %@",error);
+                DDLogError(@"error = %@",error);
                 completion(nil);
             }
             else
@@ -46,14 +44,17 @@
                 }
                 else
                 {
-                    NSLog(@"user has no groups");
+                    DDLogWarn(@"user has no groups");
                     completion(nil);
                 }
             }
         }];
 
     }
-    completion(_activeGroup);
+    else
+    {
+        completion(_activeGroup);
+    }
 }
 
 - (void)updateUserGroup:(NSString*)groupName
@@ -65,11 +66,10 @@
         
         [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
-                NSLog(@"relation made");
                // [self getGroupUsers:group];
                 
             }else{
-                NSLog(@"failed create relation with error = %@",[error description]);
+                DDLogError(@"failed create relation with error = %@",[error description]);
             }
         }];
     };
@@ -78,7 +78,7 @@
     [groupQuery whereKey:@"groupName" equalTo:groupName];
     [groupQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
-            NSLog(@"error = %@",error);
+            DDLogError(@"error = %@",error);
         }
         if ([objects count]) {
             PFObject *group = (PFObject*)objects[0];
@@ -92,7 +92,7 @@
                 if (succeeded) {
                     crateRelationBlock(group);
                 }else{
-                    NSLog(@"failed creating group with error = %@",[error description]);
+                    DDLogError(@"failed creating group with error = %@",[error description]);
                 }
             }];
             
@@ -105,22 +105,28 @@
 - (void)getActiveGroupUsersWithBlock:(void (^)(NSArray *users,NSError *error))completion
 {
     
-    PFQuery *query = [PFUser query];
+    PFQuery *query = [SHUser query];
 
     [query whereKey:@"groups" equalTo:self.activeGroup];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
+            DDLogDebug(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
             NSMutableArray *users = [NSMutableArray arrayWithArray:objects];
-            for (PFUser *user in objects) {
+            for (SHUser *user in objects) {
                 //move currect user to the begginig of the array
                 if ([[PFUser currentUser].username isEqualToString:user.username]) {
                     [users removeObject:user];
                 }
+                else
+                {
+                    user.online = NO;
+                    [self.activeUsers addObject:user];
+                }
             }
+            
             completion(users,nil);
         } else {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            DDLogError(@"Error: %@ %@", error, [error userInfo]);
             completion(nil,error);
 
         }
@@ -147,13 +153,13 @@
                 }
                 else{
                     // Log details of the failure
-                    NSLog(@"Error: %@ %@", error, [error userInfo]);
+                    DDLogError(@"Error: %@ %@", error, [error userInfo]);
                 }
             }];
         }
         else{
             // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            DDLogError(@"Error: %@ %@", error, [error userInfo]);
         }
     } progressBlock:^(int percentDone) {
         // Update your progress spinner here. percentDone will be between 0 and 100.
@@ -163,25 +169,61 @@
 
 }
 
+- (void)sortActiveContacts
+{
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"online" ascending:NO];
+    NSSortDescriptor *nameSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"username" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor,nameSortDescriptor];
+    NSArray *sortedArray = [self.activeUsers sortedArrayUsingDescriptors:sortDescriptors];
+    self.activeUsers = [sortedArray mutableCopy];
+    [self.delegate activeUsersDidUpdatePresence];
+}
+
+- (void)updateUserPresence:(NSString*)userId online:(BOOL)online
+{
+    [self.activeUsers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        SHUser * user = (SHUser*)obj;
+        if ([user.objectId isEqualToString:userId]) {
+            user.online = online;
+            *stop = YES;
+        }
+    }];
+    [self sortActiveContacts];
+}
+
 #pragma mark - SHPuserControllerDelegate
 
 - (void)didSubscribeToPresenseChannelWithMembers:(PTPusherChannelMembers *)members
 {
-    [members enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
-        PTPusherChannelMember *member = (PTPusherChannelMember*)obj;
-        [self.activeUsers addObject:member.userID];
-        
+    [self.activeUsers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        SHUser * user = (SHUser*)obj;
+        PTPusherChannelMember *member = [members memberWithID:user.objectId];
+        if (member) {
+            user.online = YES;
+        }
     }];
+    [self sortActiveContacts];
 }
 
 - (void)userDidSubscribeWithId:(NSString *)userId
 {
-    [self.activeUsers removeObject:userId];
+    [self updateUserPresence:userId online:YES];
 }
 
 - (void)userDidUnSubscribeWithId:(NSString *)userId
 {
-    [self.activeUsers addObject:userId];
+    [self updateUserPresence:userId online:NO];
 
+}
+
+- (void)userDidCall:(NSString *)userId answerHandler:(void (^)(SHCallResult))callResult
+{
+    [self.delegate userDidCall:userId answerHandler:callResult];
+}
+
+- (void)prepareForLogout
+{
+    [_activeUsers removeAllObjects];
+    _activeGroup = nil;
 }
 @end
